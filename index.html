@@ -1,9 +1,485 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-    <title>My Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>شحن شدات | رصيد جوال | تطبيقات</title>
+    <meta name="description" content="خدمة شحن شدات ببجي موبايل، رصيد جوال، وشحن تطبيقات بشكل سريع وآمن." />
+    <style>
+        :root {
+            --bg: #0b1220;
+            --bg-alt: #121d31;
+            --card: rgba(255,255,255,0.06);
+            --primary: #ffb703;
+            --primary-2: #fb8500;
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+            --success: #38b000;
+            --border: rgba(255,255,255,0.12);
+            --shadow: 0 18px 40px rgba(0,0,0,0.28);
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Tahoma, sans-serif;
+            background: linear-gradient(135deg, #0b1220 0%, #111827 40%, #0f172a 100%);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1150px, calc(100% - 30px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(11, 18, 32, 0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: #111;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.2s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: #101010;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .hero {
+            padding: 70px 0 40px;
+        }
+
+        .hero-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(255, 183, 3, 0.12);
+            color: #ffd56a;
+            border: 1px solid rgba(255, 183, 3, 0.25);
+            font-size: 0.8rem;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2.3rem, 4vw, 4.2rem);
+            line-height: 1.1;
+        }
+
+        .lead {
+            color: var(--muted);
+            font-size: 1.08rem;
+            max-width: 620px;
+            margin-bottom: 24px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .stat {
+            min-width: 130px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.35rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            box-shadow: var(--shadow);
+            padding: 22px;
+        }
+
+        .card-box {
+            background: linear-gradient(135deg, rgba(255,183,3,0.18), rgba(251,133,0,0.08));
+            border: 1px solid rgba(255,183,3,0.28);
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 16px;
+        }
+
+        .mini-title {
+            font-size: 0.8rem;
+            color: #ffd56a;
+            margin-bottom: 6px;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .hero-list {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 0;
+            display: grid;
+            gap: 12px;
+            color: var(--muted);
+        }
+
+        .hero-list li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .section-head h2 {
+            margin: 0 0 8px;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+        }
+
+        .section-head p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(255,183,3,0.2), rgba(251,133,0,0.08));
+            border: 1px solid rgba(255,183,3,0.25);
+        }
+
+        .service-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .step {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .number {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: #0f172a;
+            margin-bottom: 14px;
+        }
+
+        .cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,183,3,0.12), rgba(18,29,49,0.8));
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 32px 22px;
+            margin-top: 20px;
+        }
+
+        .cta h3 {
+            margin: 0 0 8px;
+            font-size: clamp(1.6rem, 3vw, 2.3rem);
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin: 0 0 18px;
+        }
+
+        footer {
+            padding: 28px 0 44px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero-wrap,
+            .services,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to my website</h1>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <div class="logo">S</div>
+                <span>شحنات و تطبيقات</span>
+            </div>
+            <nav class="nav-links" aria-label="التنقل الرئيسي">
+                <a href="#services">الخدمات</a>
+                <a href="#steps">طريقة الطلب</a>
+                <a href="#contact">تواصل</a>
+                <a href="#order" class="btn btn-primary">اطلب الآن</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-wrap">
+                <div>
+                    <span class="eyebrow">خدمة سريعة وآمنة</span>
+                    <h1>شحن شدات ببجي موبايل وشراء التطبيقات بسهولة</h1>
+                    <p class="lead">
+                        نوفر لك شحن شدات ببجي موبايل، رصيد الجوال، وباقات التطبيقات الشهيرة
+                        بأسعار مناسبة وسرعة في التنفيذ مع خدمة دعم متجاوبة.
+                    </p>
+                    <div class="actions">
+                        <a href="#order" class="btn btn-primary">اطلب الآن</a>
+                        <a href="#services" class="btn btn-secondary">استعراض الخدمات</a>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <strong>24/7</strong>
+                            <span>خدمة مستمرة</span>
+                        </div>
+                        <div class="stat">
+                            <strong>100%</strong>
+                            <span>موثوق</span>
+                        </div>
+                        <div class="stat">
+                            <strong>5 دقائق</strong>
+                            <span>وقت التنفيذ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-card" aria-label="معلومات الحساب">
+                    <div class="card-box">
+                        <div class="mini-title">أفضل عرض</div>
+                        <p class="price">من 15 ر.س</p>
+                    </div>
+
+                    <ul class="hero-list">
+                        <li>شحن شدات PUBG Mobile</li>
+                        <li>رصيد جوال لجميع الشبكات</li>
+                        <li>شراء تطبيقات وألعاب</li>
+                        <li>دعم فني سريع ومباشر</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-head">
+                    <h2>خدماتنا</h2>
+                    <p>كل ما تحتاجه في مكان واحد</p>
+                </div>
+
+                <div class="services">
+                    <article class="service-card">
+                        <div class="icon">🎮</div>
+                        <h3>شحن شدات ببجي</h3>
+                        <p>تجهيز شحن رصيد PUBG Mobile بسرعة، مع دعم حسابات متعددة وطرق دفع موثوقة.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="icon">📱</div>
+                        <h3>رصيد جوال</h3>
+                        <p>تجديد رصيد الجوال لجميع الشبكات، مع خدمة سريعة وآمنة ومتابعة فورية.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="icon">🛍️</div>
+                        <h3>تطبيقات وألعاب</h3>
+                        <p>شراء تطبيقات، بطاقات الألعاب، واشتراكات من منصات موثوقة وبأسعار تنافسية.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps">
+            <div class="container">
+                <div class="section-head">
+                    <h2>طريقة الطلب</h2>
+                    <p>سهلة، سريعة، بدون تعقيد</p>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="number">1</div>
+                        <h3>اختر الخدمة</h3>
+                        <p>حدد نوع الشحن أو التطبيق الذي ترغب به من القائمة المتاحة.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="number">2</div>
+                        <h3>أرسل التفاصيل</h3>
+                        <p>اذكر قيمة الشحن أو رقم الهاتف أو بيانات الطلب المطلوبة بشكل واضح.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="number">3</div>
+                        <h3>استلم الطلب</h3>
+                        <p>سنقوم بمعالجة الطلب بسرعة وتأكيد التنفيذ مباشرة بعد التفعيل.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="order">
+            <div class="container">
+                <div class="cta">
+                    <h3>جاهز للطلب الآن؟</h3>
+                    <p>تواصل معنا عبر الرسائل أو واتساب للحصول على الخدمة في أسرع وقت.</p>
+                    <a href="https://wa.me/966500000000" class="btn btn-primary" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            © 2026 جميع الحقوق محفوظة | شحنات و تطبيقات
+        </div>
+    </footer>
 </body>
 </html>
