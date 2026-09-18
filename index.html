@@ -278,6 +278,52 @@
             letter-spacing: 0.08em;
         }
 
+        .topups {
+            padding-top: 20px;
+        }
+        .topup-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+        .topup-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 22px 18px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .topup-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(69,215,255,0.5);
+        }
+        .topup-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.25rem;
+        }
+        .topup-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #7fe9ff;
+            margin: 8px 0 14px;
+        }
+        .topup-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .topup-badges span {
+            display: inline-flex;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255,94,214,0.1);
+            border: 1px solid rgba(255,94,214,0.2);
+            color: #ffc8f7;
+            font-size: 0.74rem;
+        }
+
         .cta {
             text-align: center;
             background: linear-gradient(135deg, rgba(255,94,214,0.12), rgba(9,20,32,0.8));
@@ -344,7 +390,7 @@
         }
 
         @media (max-width: 900px) {
-            .hero-wrap, .services, .steps { grid-template-columns: 1fr; }
+            .hero-wrap, .services, .steps, .topup-grid { grid-template-columns: 1fr; }
             .nav { flex-direction: column; }
             .nav-links { flex-wrap: wrap; justify-content: center; }
         }
@@ -358,6 +404,7 @@
                 <span>الهاشمي للشحن</span>
             </div>
             <nav class="nav-links" aria-label="التنقل الرئيسي">
+                <a href="#topups">خيارات الشحن</a>
                 <a href="#services">الخدمات</a>
                 <a href="#steps">طريقة الطلب</a>
                 <a href="#contact">تواصل</a>
@@ -378,7 +425,7 @@
                     </p>
                     <div class="actions">
                         <a href="#order" class="btn btn-primary">اطلب الآن</a>
-                        <a href="#services" class="btn btn-secondary">استعراض الخدمات</a>
+                        <a href="#topups" class="btn btn-secondary">خيارات الشحن</a>
                     </div>
 
                     <div class="stats">
@@ -400,6 +447,57 @@
                             <span class="phone">0983311260</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="topups" class="topups">
+            <div class="container">
+                <div class="section-head">
+                    <h2>خيارات الشحن</h2>
+                    <p>أفضل باقات الشحن والاشتراكات المتاحة الآن</p>
+                </div>
+
+                <div class="topup-grid">
+                    <article class="topup-card">
+                        <h3>PUBG Mobile</h3>
+                        <div class="topup-price">60 ر.س</div>
+                        <p>شحن سريع مع دعم الحساب ومدة تنفيذ قصيرة.</p>
+                        <div class="topup-badges">
+                            <span>سريع</span>
+                            <span>موثوق</span>
+                        </div>
+                    </article>
+
+                    <article class="topup-card">
+                        <h3>Free Fire</h3>
+                        <div class="topup-price">120 ر.س</div>
+                        <p>اختيارات متعددة حسب احتياجك وطلبك اليومي.</p>
+                        <div class="topup-badges">
+                            <span>مناسب</span>
+                            <span>دايم</span>
+                        </div>
+                    </article>
+
+                    <article class="topup-card">
+                        <h3>Fortnite</h3>
+                        <div class="topup-price">200 ر.س</div>
+                        <p>خدمة آمنة مع تأكيد فوري بعد تجهيز الطلب.</p>
+                        <div class="topup-badges">
+                            <span>فوري</span>
+                            <span>أمان</span>
+                        </div>
+                    </article>
+
+                    <article class="topup-card">
+                        <h3>Roblox</h3>
+                        <div class="topup-price">300 ر.س</div>
+                        <p>أفضل العروض للبطاقات والاشتراكات الرقمية.</p>
+                        <div class="topup-badges">
+                            <span>تجهيز</span>
+                            <span>مميز</span>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
