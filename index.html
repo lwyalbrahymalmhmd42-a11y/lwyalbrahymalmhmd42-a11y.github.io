@@ -1,834 +1,849 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الهاشمي | متجر رقمي</title>
-    <meta name="description" content="متجر الهاشمي لتجديد الألعاب والتطبيقات والاشتراكات الرقمية" />
-    <style>
-        :root {
-            --bg-1: #071120;
-            --bg-2: #0d1d38;
-            --panel: rgba(15, 25, 46, 0.82);
-            --panel-strong: #101f3a;
-            --panel-soft: #162b4d;
-            --card: #f8fbff;
-            --line: rgba(164, 181, 211, 0.25);
-            --text: #eaf3ff;
-            --muted: #a1b6d8;
-            --blue: #4aa7ff;
-            --cyan: #5fe3ff;
-            --gold: #ffd36d;
-            --pink: #ff72d2;
-            --green: #2ad49f;
-            --purple: #8c7bff;
-            --orange: #ff9e5d;
-            --shadow: 0 22px 50px rgba(5, 12, 22, 0.4);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الهاشمي | متجر شحن الألعاب</title>
+  <meta name="description" content="متجر الهاشمي لتجديد الألعاب والتطبيقات والاشتراكات الرقمية" />
+  <style>
+    :root {
+      --bg-1: #050d1b;
+      --bg-2: #0d1730;
+      --bg-3: #101e3d;
+      --surface: rgba(18, 31, 55, 0.9);
+      --surface-2: rgba(10, 19, 33, 0.95);
+      --card: #f5f8ff;
+      --line: rgba(175, 198, 238, 0.18);
+      --text: #ebf5ff;
+      --muted: #a6bad9;
+      --blue: #4aa0ff;
+      --blue-2: #0b7cff;
+      --cyan: #6ae6ff;
+      --gold: #ffd56a;
+      --gold-2: #ffb74d;
+      --pink: #ff6ad5;
+      --green: #3ee0a3;
+      --violet: #8e7dff;
+      --red: #ff5d6c;
+      --shadow: 0 22px 52px rgba(3, 9, 20, 0.42);
+    }
 
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Tahoma, Arial, sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at top, rgba(94, 176, 255, 0.3), transparent 25%),
-                linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
-            line-height: 1.5;
-        }
-        a, button, input { font: inherit; }
-        button, input { border: none; }
-        button { cursor: pointer; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(74, 160, 255, 0.2), transparent 28%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      line-height: 1.5;
+    }
+    button, input, a { font: inherit; }
+    button { cursor: pointer; }
+    a { text-decoration: none; color: inherit; }
 
-        .app-shell {
-            width: min(100%, 520px);
-            margin: 0 auto;
-            background: linear-gradient(180deg, rgba(7, 17, 32, 0.94), rgba(9, 18, 35, 0.97));
-            min-height: 100vh;
-            box-shadow: 0 0 60px rgba(4, 9, 18, 0.45);
-            position: relative;
-            overflow: hidden;
-        }
+    .app-shell {
+      position: relative;
+      width: min(100%, 520px);
+      min-height: 100vh;
+      margin: 0 auto;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(7, 14, 26, 0.96), rgba(10, 18, 32, 0.97));
+      box-shadow: 0 0 80px rgba(1, 4, 10, 0.52);
+    }
 
-        .app-shell::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 28px 28px;
-            opacity: 0.4;
-            pointer-events: none;
-        }
+    .app-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
 
-        .topbar, main, .bottom-nav {
-            position: relative;
-            z-index: 1;
-        }
+    .topbar, main, .bottom-nav {
+      position: relative;
+      z-index: 1;
+    }
 
-        .topbar {
-            padding: 16px 16px 0;
-        }
+    .topbar {
+      padding: 18px 16px 0;
+    }
 
-        .top-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--muted);
-            font-size: 0.72rem;
-            margin-bottom: 18px;
-        }
-        .status-left, .status-right { display: flex; align-items: center; gap: 8px; }
-        .signal { color: var(--cyan); font-size: 1.05rem; }
-        .battery {
-            width: 28px;
-            height: 14px;
-            border: 2px solid rgba(255,255,255,0.7);
-            border-radius: 5px;
-            position: relative;
-            background: linear-gradient(90deg, #5ee2ac 0 72%, transparent 72%);
-        }
-        .battery::after {
-            content: "";
-            position: absolute;
-            top: 3px;
-            right: -5px;
-            width: 3px;
-            height: 6px;
-            border-radius: 2px;
-            background: rgba(255,255,255,0.7);
-        }
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-bottom: 18px;
+    }
+    .status-left, .status-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .signal {
+      color: var(--cyan);
+      font-size: 1rem;
+    }
+    .battery {
+      position: relative;
+      width: 28px;
+      height: 14px;
+      border-radius: 5px;
+      border: 2px solid rgba(255,255,255,0.7);
+      background: linear-gradient(90deg, #62e3b7 0 75%, transparent 75%);
+    }
+    .battery::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: -5px;
+      width: 3px;
+      height: 6px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.7);
+    }
 
-        .brand-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 10px 0 14px;
-        }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 0;
-        }
-        .brand-mark {
-            width: 50px;
-            height: 50px;
-            display: grid;
-            place-items: center;
-            border-radius: 18px;
-            background: linear-gradient(135deg, var(--gold), #f29c38);
-            color: #172b4d;
-            font-size: 1.6rem;
-            font-weight: 900;
-            box-shadow: 0 15px 30px rgba(255, 195, 70, 0.3);
-        }
-        .brand-name {
-            font-weight: 900;
-            font-size: 1.3rem;
-            line-height: 1.1;
-            white-space: nowrap;
-        }
-        .brand-name small {
-            display: block;
-            margin-top: 4px;
-            font-size: 0.62rem;
-            letter-spacing: 0.11em;
-            color: var(--muted);
-            font-weight: 800;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #10274b;
+      font-size: 1.6rem;
+      font-weight: 900;
+      box-shadow: 0 14px 28px rgba(255, 196, 78, 0.28);
+    }
+    .brand-name {
+      font-size: 1.28rem;
+      font-weight: 900;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .brand-name small {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 800;
+    }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .vip-tag {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 56px;
-            padding: 8px 10px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #ff8b4f, #ff567e);
-            color: #fff;
-            font-size: 0.68rem;
-            font-weight: 900;
-            box-shadow: 0 12px 24px rgba(255,110,98,0.25);
-        }
-        .icon-button {
-            position: relative;
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.14);
-            color: #fff;
-            font-size: 1.1rem;
-        }
-        .notification-dot {
-            position: absolute;
-            top: -5px;
-            right: -4px;
-            min-width: 16px;
-            height: 16px;
-            padding: 0 4px;
-            border-radius: 999px;
-            background: #ff4d67;
-            color: #fff;
-            font-size: 0.58rem;
-            font-weight: 900;
-            display: grid;
-            place-items: center;
-        }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .vip-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 56px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff8b68, #ff567d);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(255, 101, 86, 0.25);
+    }
+    .icon-button {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+    }
+    .alert-count {
+      position: absolute;
+      top: -6px;
+      right: -5px;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: var(--red);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 0.58rem;
+      font-weight: 900;
+    }
 
-        main {
-            padding: 0 16px 110px;
-        }
+    main {
+      padding: 0 16px 110px;
+    }
 
-        .hero {
-            position: relative;
-            border-radius: 26px;
-            padding: 18px 18px 16px;
-            background:
-                radial-gradient(circle at 50% 12%, rgba(108, 207, 255, 0.38), transparent 24%),
-                linear-gradient(135deg, rgba(16,29,56,0.9), rgba(21,39,72,0.96));
-            border: 1px solid rgba(137, 168, 216, 0.16);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
-        }
-        .hero-head {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-weight: 900;
-            color: #fff;
-            font-size: 0.92rem;
-        }
-        .hero-emoji {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            background: rgba(255,255,255,0.09);
-            border: 1px solid rgba(255,255,255,0.18);
-        }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-top: 4px;
+      padding: 18px 18px 20px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(108, 230, 255, 0.35), transparent 18%),
+        linear-gradient(135deg, rgba(18, 35, 62, 0.96), rgba(15, 25, 45, 0.98));
+      border: 1px solid rgba(143, 173, 219, 0.2);
+      box-shadow: var(--shadow);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+    }
+    .hero-head,
+    .hero-title,
+    .hero-phone,
+    .hero-note {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+    .mini-badge {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    .hero-title {
+      margin: 16px 0 10px;
+      text-align: center;
+      color: #fff;
+      font-size: clamp(2.1rem, 7vw, 3.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+    }
+    .hero-title span {
+      display: block;
+      margin-top: 10px;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: #dfeeff;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+    .hero-phone {
+      width: min(100%, 360px);
+      margin: 18px auto 0;
+      padding: 14px 18px;
+      border-radius: 18px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(92, 85, 255, 0.72), rgba(18, 178, 255, 0.58));
+      border: 2px solid rgba(255,255,255,0.18);
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.08), 0 0 18px rgba(98, 169, 255, 0.2);
+    }
+    .hero-phone strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      letter-spacing: 0.06em;
+      font-weight: 900;
+    }
+    .hero-phone small {
+      display: block;
+      margin-top: 7px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.86);
+      font-weight: 700;
+    }
+    .hero-note {
+      margin-top: 14px;
+      text-align: center;
+      color: #dfeeff;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
 
-        .hero-title {
-            position: relative;
-            z-index: 1;
-            margin: 16px 0 10px;
-            text-align: center;
-            color: #fff;
-            font-size: clamp(2rem, 7vw, 3.6rem);
-            line-height: 0.95;
-            font-weight: 900;
-            letter-spacing: -0.06em;
-        }
-        .hero-title span {
-            display: block;
-            margin-top: 8px;
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            color: #d8ebff;
-            letter-spacing: 0;
-            font-weight: 800;
-        }
+    .stats {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .stat-card {
+      padding: 14px 15px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(18, 30, 52, 0.9);
+      box-shadow: 0 12px 22px rgba(5, 10, 18, 0.18);
+    }
+    .stat-card.small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.6rem;
+    }
+    .stat-card.small span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .stat-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .stat-value {
+      display: block;
+      margin-top: 8px;
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 900;
+      direction: ltr;
+    }
 
-        .hero-phone {
-            position: relative;
-            z-index: 1;
-            margin: 18px auto 0;
-            width: min(100%, 360px);
-            padding: 14px 18px;
-            border-radius: 18px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(111, 83, 255, 0.7), rgba(19, 178, 255, 0.5));
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: inset 0 0 18px rgba(255,255,255,0.08), 0 0 20px rgba(108, 159, 255, 0.2);
-        }
-        .hero-phone strong {
-            display: block;
-            font-size: clamp(1.8rem, 6vw, 3rem);
-            letter-spacing: 0.06em;
-            font-weight: 900;
-            color: #fff;
-        }
-        .hero-phone small {
-            display: block;
-            margin-top: 7px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.85);
-            font-weight: 700;
-        }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      height: 48px;
+      padding: 0 12px;
+      border-radius: 14px;
+      background: rgba(15, 27, 46, 0.9);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .search-box input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    .search-box input::placeholder { color: var(--muted); }
 
-        .hero-note {
-            position: relative;
-            z-index: 1;
-            margin-top: 14px;
-            text-align: center;
-            color: #dfeeff;
-            font-size: 0.75rem;
-            font-weight: 800;
-        }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.08rem;
+      color: #fff;
+    }
+    .section-head a {
+      color: var(--cyan);
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
 
-        .balances {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 12px;
-            margin-top: 18px;
-        }
-        .balance-card,
-        .mini-card {
-            background: rgba(17, 32, 57, 0.9);
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            padding: 14px 15px;
-            box-shadow: 0 12px 26px rgba(4, 8, 18, 0.16);
-        }
-        .balance-label {
-            display: block;
-            color: var(--muted);
-            font-size: 0.7rem;
-        }
-        .balance-value {
-            display: block;
-            margin-top: 8px;
-            font-size: 1.4rem;
-            font-weight: 900;
-            direction: ltr;
-            color: #fff;
-        }
-        .mini-card {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--gold);
-            font-size: 1.6rem;
-        }
-        .mini-card span {
-            display: block;
-            font-size: 0.72rem;
-            margin-top: 6px;
-            color: var(--muted);
-        }
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 6px;
+    }
+    .chip-row::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      color: #ebf6ff;
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+    .chip.active {
+      background: linear-gradient(135deg, var(--blue), #7ecbff);
+      border-color: transparent;
+      color: #fff;
+    }
 
-        .search-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 18px;
-            padding: 0 12px;
-            height: 48px;
-            border-radius: 14px;
-            background: rgba(18, 35, 62, 0.9);
-            border: 1px solid var(--line);
-            color: var(--muted);
-        }
-        .search-box input {
-            width: 100%;
-            background: transparent;
-            color: var(--text);
-            outline: none;
-            font-size: 0.9rem;
-        }
-        .search-box input::placeholder { color: var(--muted); }
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .store-item {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .store-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 26px rgba(6, 12, 21, 0.22);
+    }
+    .store-thumb {
+      position: relative;
+      height: 108px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0d2a5d, #102c60 60%, #0a172f);
+    }
+    .store-thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .store-logo {
+      position: relative;
+      z-index: 1;
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      font-size: 2rem;
+      box-shadow: inset 0 2px 8px rgba(255,255,255,0.23), 0 8px 18px rgba(0,0,0,0.18);
+    }
+    .store-label {
+      display: block;
+      padding: 10px 8px 12px;
+      text-align: center;
+      color: #edf7ff;
+      font-size: 0.74rem;
+      line-height: 1.4;
+      font-weight: 800;
+    }
 
-        .section-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 24px;
-            margin-bottom: 12px;
-        }
-        .section-head h2 {
-            margin: 0;
-            font-size: 1.08rem;
-            color: #fff;
-        }
-        .section-head a {
-            color: var(--cyan);
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 800;
-        }
+    .gaming { background: linear-gradient(135deg, #ff7ecb, #ff9d4d); }
+    .apps { background: linear-gradient(135deg, #63d7ff, #4a7eff); }
+    .cards { background: linear-gradient(135deg, #8defc5, #1ca67c); }
+    .social { background: linear-gradient(135deg, #2bd0ff, #d762f9); }
+    .account { background: linear-gradient(135deg, #edf2ff, #9daecb); }
+    .soft { background: linear-gradient(135deg, #79d7ff, #3d7eea); }
+    .premium { background: linear-gradient(135deg, #97ecff, #6a79f2); }
+    .tv { background: linear-gradient(135deg, #ffd38b, #905ff0); }
+    .design { background: linear-gradient(135deg, #8ff1ff, #8a4ef5); }
+    .num { background: linear-gradient(135deg, #66d8ff, #31ca8c); }
+    .vpn { background: linear-gradient(135deg, #a8d0ff, #5f7ef7); }
 
-        .chip-row {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding-bottom: 6px;
-        }
-        .chip-row::-webkit-scrollbar { display: none; }
-        .chip {
-            flex: 0 0 auto;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border-radius: 999px;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: var(--text);
-            font-size: 0.74rem;
-            font-weight: 800;
-        }
-        .chip.active {
-            background: linear-gradient(135deg, var(--blue), #7fb3ff);
-            color: #fff;
-            border-color: transparent;
-        }
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .game-card {
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 20px rgba(10,18,29,0.12);
+    }
+    .game-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .game-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffae4f, #ff5bc1);
+      font-size: 1.2rem;
+      box-shadow: inset 0 2px 8px rgba(255,255,255,0.3);
+    }
+    .game-header h3 {
+      margin: 0;
+      font-size: 0.88rem;
+      color: #fff;
+    }
+    .game-header small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.6rem;
+    }
+    .game-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+      display: grid;
+      gap: 6px;
+    }
+    .game-options li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 8px;
+      border-radius: 10px;
+      background: rgba(122, 166, 255, 0.08);
+      color: #e3effd;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .game-options strong {
+      color: var(--gold);
+      font-size: 0.72rem;
+    }
+    .game-card button {
+      width: 100%;
+      border: 0;
+      border-radius: 11px;
+      padding: 9px 10px;
+      background: linear-gradient(135deg, #0d2d68, #1967d2);
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 900;
+    }
 
-        .store-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin-top: 14px;
-        }
-        .store-item {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .store-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 30px rgba(9, 20, 35, 0.22);
-        }
-        .store-thumb {
-            height: 108px;
-            display: grid;
-            place-items: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0d2457, #102f6a 60%, #09152d);
-        }
-        .store-thumb::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-            background-size: 18px 18px;
-        }
-        .store-logo {
-            position: relative;
-            z-index: 1;
-            width: 68px;
-            height: 68px;
-            border-radius: 18px;
-            display: grid;
-            place-items: center;
-            font-size: 2rem;
-            box-shadow: inset 0 2px 8px rgba(255,255,255,0.25), 0 8px 18px rgba(0,0,0,0.18);
-        }
-        .store-label {
-            display: block;
-            padding: 10px 8px 12px;
-            text-align: center;
-            font-size: 0.74rem;
-            line-height: 1.4;
-            font-weight: 800;
-            color: #f1f6ff;
-        }
+    .quick-actions {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-top: 18px;
+      padding-bottom: 6px;
+    }
+    .quick-actions::-webkit-scrollbar { display: none; }
+    .quick-actions button {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: #e8f5ff;
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+    .quick-actions button:first-child {
+      background: linear-gradient(135deg, #f7c75b, #ff7b7b);
+      border-color: transparent;
+      color: #1b2445;
+    }
 
-        .gaming { background: linear-gradient(135deg, #ff7ecb, #ff9d4d); }
-        .apps { background: linear-gradient(135deg, #67d4ff, #4c7fff); }
-        .cards { background: linear-gradient(135deg, #89f0c2, #19a07a); }
-        .social { background: linear-gradient(135deg, #26c9ff, #d65df7); }
-        .account { background: linear-gradient(135deg, #dfe9fb, #8da8c8); }
-        .soft { background: linear-gradient(135deg, #79d6ff, #3f7de8); }
-        .premium { background: linear-gradient(135deg, #8ae9ff, #687af4); }
-        .tv { background: linear-gradient(135deg, #ffd38b, #905ff0); }
-        .design { background: linear-gradient(135deg, #8ae7ff, #8b4ef7); }
-        .num { background: linear-gradient(135deg, #5ed6ff, #36d29b); }
-        .vpn { background: linear-gradient(135deg, #9dc8ff, #5b7df6); }
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      z-index: 10;
+      width: min(100%, 520px);
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(9, 17, 31, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 -12px 24px rgba(2,7,20,0.25);
+    }
+    .nav-icon {
+      min-width: 60px;
+      padding: 5px 10px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: #9db0cb;
+      font-size: 1.35rem;
+    }
+    .nav-icon span {
+      display: block;
+      margin-top: 1px;
+      font-size: 0.62rem;
+      font-weight: 800;
+    }
+    .nav-icon.active {
+      color: var(--cyan);
+      background: rgba(106, 230, 255, 0.1);
+    }
 
-        .game-list {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 10px;
-        }
-        .game-card {
-            padding: 12px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--line);
-            box-shadow: 0 12px 20px rgba(10, 18, 29, 0.12);
-        }
-        .game-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .game-icon {
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #ffad4d, #ff5fc9);
-            font-size: 1.2rem;
-            box-shadow: inset 0 2px 8px rgba(255,255,255,0.3);
-        }
-        .game-header h3 {
-            margin: 0;
-            color: #fff;
-            font-size: 0.88rem;
-        }
-        .game-header small {
-            display: block;
-            margin-top: 2px;
-            color: var(--muted);
-            font-size: 0.6rem;
-        }
-        .game-options {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 12px;
-            display: grid;
-            gap: 6px;
-        }
-        .game-options li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding: 7px 8px;
-            border-radius: 10px;
-            background: rgba(142, 177, 255, 0.08);
-            color: #dfeeff;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-        .game-options strong {
-            color: var(--gold);
-            font-size: 0.72rem;
-        }
-        .game-card button {
-            width: 100%;
-            border-radius: 11px;
-            padding: 9px 10px;
-            background: linear-gradient(135deg, #0d2d68, #1967d2);
-            color: #fff;
-            font-size: 0.74rem;
-            font-weight: 900;
-        }
-
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            margin-top: 18px;
-            padding-bottom: 6px;
-        }
-        .quick-actions::-webkit-scrollbar { display: none; }
-        .quick-actions button {
-            flex: 0 0 auto;
-            border-radius: 12px;
-            padding: 9px 14px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--line);
-            color: #dfeeff;
-            font-size: 0.74rem;
-            font-weight: 800;
-        }
-        .quick-actions button:first-child {
-            background: linear-gradient(135deg, #f7c75b, #ff7b7b);
-            border-color: transparent;
-            color: #1a254a;
-        }
-
-        .bottom-nav {
-            position: fixed;
-            left: 50%;
-            bottom: 0;
-            z-index: 10;
-            width: min(100%, 520px);
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-            background: rgba(9, 17, 32, 0.94);
-            backdrop-filter: blur(14px);
-            border-top: 1px solid rgba(255,255,255,0.09);
-            box-shadow: 0 -12px 24px rgba(2,7,20,.25);
-        }
-        .nav-icon {
-            min-width: 60px;
-            border: 0;
-            border-radius: 12px;
-            background: transparent;
-            color: #9baecb;
-            font-size: 1.35rem;
-            padding: 5px 10px;
-        }
-        .nav-icon span {
-            display: block;
-            margin-top: 1px;
-            font-size: 0.62rem;
-            font-weight: 800;
-        }
-        .nav-icon.active {
-            color: var(--cyan);
-            background: rgba(95, 227, 255, 0.08);
-        }
-
-        @media (max-width: 390px) {
-            .store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .game-list { grid-template-columns: 1fr; }
-            .balances { grid-template-columns: 1fr; }
-            .brand-name { font-size: 1.05rem; }
-            .vip-tag { display: none; }
-            .store-label { font-size: 0.7rem; }
-        }
-    </style>
+    @media (max-width: 390px) {
+      .store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .game-list { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .vip-tag { display: none; }
+      .brand-name { font-size: 1.05rem; }
+      .store-label { font-size: 0.7rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="app-shell">
-        <header class="topbar">
-            <div class="top-meta" aria-label="معلومات الجهاز">
-                <div class="status-left"><span class="signal">◔</span><span>4G</span></div>
-                <div class="status-right"><span>3:04</span><span class="battery" aria-hidden="true"></span></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="status-row" aria-label="حالة الجهاز">
+        <div class="status-left"><span class="signal">◔</span><span>4G</span></div>
+        <div class="status-right"><span>3:04</span><span class="battery" aria-hidden="true"></span></div>
+      </div>
+
+      <div class="brand-row">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">ا</div>
+          <div class="brand-name">الهاشمي<small>digital market</small></div>
+        </div>
+
+        <div class="header-actions">
+          <div class="vip-tag">VIP1</div>
+          <button class="icon-button" type="button" aria-label="الإشعارات">
+            🔔
+            <span class="alert-count">48</span>
+          </button>
+          <button class="icon-button" type="button" aria-label="القائمة">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="عرض خاص للمتجر">
+        <div class="hero-head">
+          <div class="mini-badge" aria-hidden="true">🎮</div>
+          <div>الهاشمي</div>
+          <div class="mini-badge" aria-hidden="true">💰</div>
+        </div>
+
+        <h1 class="hero-title">DIGITAL<br>STORE<span>تجديد الألعاب والاشتراكات والتطبيقات</span></h1>
+
+        <div class="hero-phone">
+          <strong>0983311260</strong>
+          <small>للاشتراك والاستفسار</small>
+        </div>
+
+        <div class="hero-note">متاح على مدار 24 ساعة • توصيل فوري • دعم سريع</div>
+      </section>
+
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-label">الرصيد الحالي</span>
+          <strong class="stat-value">$ 0.021</strong>
+        </div>
+        <div class="stat-card small">
+          <div>
+            ⚡
+            <span>مميز</span>
+          </div>
+        </div>
+      </div>
+
+      <label class="search-box" for="search">
+        <span aria-hidden="true">⌕</span>
+        <input id="search" type="search" placeholder="ابحث عن خدمة أو منتج..." />
+      </label>
+
+      <div class="section-head" id="categories">
+        <h2>الأقسام</h2>
+        <a href="#categories">عرض الكل</a>
+      </div>
+
+      <div class="chip-row" aria-label="الفئات الرئيسية">
+        <button class="chip active" type="button">🔥 الأكثر طلباً</button>
+        <button class="chip" type="button">🎮 ألعاب</button>
+        <button class="chip" type="button">📱 تطبيقات</button>
+        <button class="chip" type="button">📺 شاشة</button>
+        <button class="chip" type="button">💳 بطاقات</button>
+      </div>
+
+      <div class="store-grid">
+        <a class="store-item" href="#" data-name="الرصيد والعمولات">
+          <div class="store-thumb"><div class="store-logo gaming">💳</div></div>
+          <span class="store-label">الرصيد والعمولات</span>
+        </a>
+        <a class="store-item" href="#" data-name="التطبيقات">
+          <div class="store-thumb"><div class="store-logo apps">📱</div></div>
+          <span class="store-label">التطبيقات</span>
+        </a>
+        <a class="store-item" href="#" data-name="الألعاب">
+          <div class="store-thumb"><div class="store-logo gaming">🎮</div></div>
+          <span class="store-label">الألعاب</span>
+        </a>
+        <a class="store-item" href="#" data-name="البطاقات">
+          <div class="store-thumb"><div class="store-logo cards">💸</div></div>
+          <span class="store-label">البطاقات</span>
+        </a>
+        <a class="store-item" href="#" data-name="السوشيال ميديا">
+          <div class="store-thumb"><div class="store-logo social">📣</div></div>
+          <span class="store-label">السوشيال ميديا</span>
+        </a>
+        <a class="store-item" href="#" data-name="حسابات جاهزة">
+          <div class="store-thumb"><div class="store-logo account">👤</div></div>
+          <span class="store-label">حسابات جاهزة</span>
+        </a>
+        <a class="store-item" href="#" data-name="برامج">
+          <div class="store-thumb"><div class="store-logo soft">🧩</div></div>
+          <span class="store-label">برامج</span>
+        </a>
+        <a class="store-item" href="#" data-name="تفعيل الحسابات">
+          <div class="store-thumb"><div class="store-logo premium">✅</div></div>
+          <span class="store-label">تفعيل الحسابات</span>
+        </a>
+        <a class="store-item" href="#" data-name="اشتراكات الشاشة">
+          <div class="store-thumb"><div class="store-logo tv">📺</div></div>
+          <span class="store-label">اشتراكات الشاشة</span>
+        </a>
+        <a class="store-item" href="#" data-name="تطبيقات تصميم">
+          <div class="store-thumb"><div class="store-logo design">🖌️</div></div>
+          <span class="store-label">تطبيقات تصميم</span>
+        </a>
+        <a class="store-item" href="#" data-name="أرقام">
+          <div class="store-thumb"><div class="store-logo num">☎️</div></div>
+          <span class="store-label">أرقام</span>
+        </a>
+        <a class="store-item" href="#" data-name="VPN">
+          <div class="store-thumb"><div class="store-logo vpn">🔒</div></div>
+          <span class="store-label">VPN</span>
+        </a>
+      </div>
+
+      <div class="section-head" id="games">
+        <h2>العاب مميزة</h2>
+        <a href="#games">عرض الكل</a>
+      </div>
+
+      <div class="game-list">
+        <article class="game-card" data-name="pubg mobile شحن بطاقات روبية">
+          <div class="game-header">
+            <div class="game-icon" aria-hidden="true">🎮</div>
+            <div>
+              <h3>PUBG Mobile</h3>
+              <small>تفعيل فوري</small>
             </div>
+          </div>
+          <ul class="game-options">
+            <li><span>بطاقة 60</span><strong>$ 8</strong></li>
+            <li><span>بطاقة 150</span><strong>$ 15</strong></li>
+            <li><span>بطاقة 355</span><strong>$ 29</strong></li>
+          </ul>
+          <button type="button">طلب الآن</button>
+        </article>
 
-            <div class="brand-row">
-                <div class="brand">
-                    <div class="brand-mark" aria-hidden="true">ا</div>
-                    <div class="brand-name">الهاشمي<small>digital market</small></div>
-                </div>
-                <div class="header-actions">
-                    <div class="vip-tag">VIP1</div>
-                    <button class="icon-button" type="button" aria-label="الإشعارات">
-                        🔔
-                        <span class="notification-dot">48</span>
-                    </button>
-                    <button class="icon-button" type="button" aria-label="القائمة">☰</button>
-                </div>
+        <article class="game-card" data-name="free fire شحن الرصيد">
+          <div class="game-header">
+            <div class="game-icon" aria-hidden="true">🔥</div>
+            <div>
+              <h3>Free Fire</h3>
+              <small>باقة موثوقة</small>
             </div>
-        </header>
+          </div>
+          <ul class="game-options">
+            <li><span>50 Diamonds</span><strong>$ 4</strong></li>
+            <li><span>100 Diamonds</span><strong>$ 8</strong></li>
+            <li><span>310 Diamonds</span><strong>$ 19</strong></li>
+          </ul>
+          <button type="button">طلب الآن</button>
+        </article>
 
-        <main>
-            <section class="hero" aria-label="عرض متجر شحن الألعاب">
-                <div class="hero-head">
-                    <div class="hero-emoji" aria-hidden="true">🎮</div>
-                    <div>الهاشمي</div>
-                    <div class="hero-emoji" aria-hidden="true">💰</div>
-                </div>
-                <h1 class="hero-title">DIGITAL<br>GAME STORE<span>تجديد الألعاب والتطبيقات والاشتراكات</span></h1>
-                <div class="hero-phone">
-                    <strong>0983311260</strong>
-                    <small>للاشتراك والاستفسار</small>
-                </div>
-                <div class="hero-note">متاح 24 ساعة — توصيل فوري ومضمون</div>
-            </section>
-
-            <div class="balances">
-                <div class="balance-card">
-                    <span class="balance-label">الرصيد الحالي</span>
-                    <strong class="balance-value">$ 0.021</strong>
-                </div>
-                <div class="mini-card">
-                    <div>
-                        ⚡
-                        <span>مميز</span>
-                    </div>
-                </div>
+        <article class="game-card" data-name="call of duty mobile شحن بينات">
+          <div class="game-header">
+            <div class="game-icon" aria-hidden="true">⚡</div>
+            <div>
+              <h3>COD Mobile</h3>
+              <small>مميز لليوم</small>
             </div>
+          </div>
+          <ul class="game-options">
+            <li><span>الباقة الصغيرة</span><strong>$ 6</strong></li>
+            <li><span>الباقة المتوسطة</span><strong>$ 11</strong></li>
+            <li><span>الباقة الكبيرة</span><strong>$ 22</strong></li>
+          </ul>
+          <button type="button">طلب الآن</button>
+        </article>
 
-            <label class="search-box" for="search">
-                <span aria-hidden="true">⌕</span>
-                <input id="search" type="search" placeholder="ابحث عن خدمة أو منتج..." />
-            </label>
-
-            <div class="section-head" id="categories">
-                <h2>الأقسام</h2>
-                <a href="#categories">عرض الكل</a>
+        <article class="game-card" data-name="valorant رويال باقات">
+          <div class="game-header">
+            <div class="game-icon" aria-hidden="true">🎯</div>
+            <div>
+              <h3>Valorant</h3>
+              <small>بطاقات متاحة</small>
             </div>
+          </div>
+          <ul class="game-options">
+            <li><span>420 VP</span><strong>$ 5</strong></li>
+            <li><span>1375 VP</span><strong>$ 15</strong></li>
+            <li><span>4200 VP</span><strong>$ 42</strong></li>
+          </ul>
+          <button type="button">طلب الآن</button>
+        </article>
+      </div>
 
-            <div class="chip-row" aria-label="فئات المتجر">
-                <button class="chip active" type="button">🔥 الأكثر طلباً</button>
-                <button class="chip" type="button">🎮 ألعاب</button>
-                <button class="chip" type="button">📱 تطبيقات</button>
-                <button class="chip" type="button">📺 شاشات</button>
-                <button class="chip" type="button">💳 بطاقات</button>
-            </div>
+      <div class="quick-actions">
+        <button type="button">🔥 الأكثر طلباً</button>
+        <button type="button">⚡ عروض اليوم</button>
+        <button type="button">🛡️ خدمات موثوقة</button>
+        <button type="button">💬 دعم سريع</button>
+      </div>
+    </main>
 
-            <div class="store-grid">
-                <a class="store-item" href="#" data-name="الرصيد والعمولات">
-                    <div class="store-thumb"><div class="store-logo gaming">💳</div></div>
-                    <span class="store-label">الرصيد والعمولات</span>
-                </a>
-                <a class="store-item" href="#" data-name="التطبيقات">
-                    <div class="store-thumb"><div class="store-logo apps">📱</div></div>
-                    <span class="store-label">التطبيقات</span>
-                </a>
-                <a class="store-item" href="#" data-name="الألعاب">
-                    <div class="store-thumb"><div class="store-logo gaming">🎮</div></div>
-                    <span class="store-label">الألعاب</span>
-                </a>
-                <a class="store-item" href="#" data-name="البطاقات">
-                    <div class="store-thumb"><div class="store-logo cards">💸</div></div>
-                    <span class="store-label">البطاقات</span>
-                </a>
-                <a class="store-item" href="#" data-name="السوشيال ميديا">
-                    <div class="store-thumb"><div class="store-logo social">📣</div></div>
-                    <span class="store-label">السوشيال ميديا</span>
-                </a>
-                <a class="store-item" href="#" data-name="حسابات جاهزة">
-                    <div class="store-thumb"><div class="store-logo account">👤</div></div>
-                    <span class="store-label">حسابات جاهزة</span>
-                </a>
-                <a class="store-item" href="#" data-name="برامج">
-                    <div class="store-thumb"><div class="store-logo soft">🧩</div></div>
-                    <span class="store-label">برامج</span>
-                </a>
-                <a class="store-item" href="#" data-name="تفعيل الحسابات">
-                    <div class="store-thumb"><div class="store-logo premium">✅</div></div>
-                    <span class="store-label">تفعيل الحسابات</span>
-                </a>
-                <a class="store-item" href="#" data-name="اشتراكات الشاشة">
-                    <div class="store-thumb"><div class="store-logo tv">📺</div></div>
-                    <span class="store-label">اشتراكات الشاشة</span>
-                </a>
-                <a class="store-item" href="#" data-name="تطبيقات تصميم">
-                    <div class="store-thumb"><div class="store-logo design">🖌️</div></div>
-                    <span class="store-label">تطبيقات تصميم</span>
-                </a>
-                <a class="store-item" href="#" data-name="أرقام">
-                    <div class="store-thumb"><div class="store-logo num">☎️</div></div>
-                    <span class="store-label">أرقام</span>
-                </a>
-                <a class="store-item" href="#" data-name="VPN">
-                    <div class="store-thumb"><div class="store-logo vpn">🔒</div></div>
-                    <span class="store-label">VPN</span>
-                </a>
-            </div>
+    <nav class="bottom-nav" aria-label="التنقل السفلي">
+      <button class="nav-icon active" type="button">⌂<span>الرئيسية</span></button>
+      <button class="nav-icon" type="button">◫<span>الطلبات</span></button>
+      <button class="nav-icon" type="button">◎<span>الملف</span></button>
+      <button class="nav-icon" type="button">⚙<span>الإعدادات</span></button>
+    </nav>
+  </div>
 
-            <div class="section-head" id="games">
-                <h2>العاب مميزة</h2>
-                <a href="#games">عرض الكل</a>
-            </div>
+  <script>
+    const search = document.querySelector('#search');
+    const items = [...document.querySelectorAll('.store-item, .game-card')];
 
-            <div class="game-list">
-                <article class="game-card" data-name="pubg mobile شحن بطاقات روبية">
-                    <div class="game-header">
-                        <div class="game-icon" aria-hidden="true">🎮</div>
-                        <div>
-                            <h3>PUBG Mobile</h3>
-                            <small>تفعيل فوري</small>
-                        </div>
-                    </div>
-                    <ul class="game-options">
-                        <li><span>بطاقة 60</span><strong>$ 8</strong></li>
-                        <li><span>بطاقة 150</span><strong>$ 15</strong></li>
-                        <li><span>بطاقة 355</span><strong>$ 29</strong></li>
-                    </ul>
-                    <button type="button">طلب الآن</button>
-                </article>
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLowerCase();
+      items.forEach(item => {
+        const name = (item.dataset.name || '').toLowerCase();
+        item.hidden = query && !name.includes(query);
+      });
+    });
 
-                <article class="game-card" data-name="free fire شحن الرصيد">
-                    <div class="game-header">
-                        <div class="game-icon" aria-hidden="true">🔥</div>
-                        <div>
-                            <h3>Free Fire</h3>
-                            <small>باقة موثوقة</small>
-                        </div>
-                    </div>
-                    <ul class="game-options">
-                        <li><span>50 Diamonds</span><strong>$ 4</strong></li>
-                        <li><span>100 Diamonds</span><strong>$ 8</strong></li>
-                        <li><span>310 Diamonds</span><strong>$ 19</strong></li>
-                    </ul>
-                    <button type="button">طلب الآن</button>
-                </article>
-
-                <article class="game-card" data-name="call of duty mobile شحن بينات">
-                    <div class="game-header">
-                        <div class="game-icon" aria-hidden="true">⚡</div>
-                        <div>
-                            <h3>COD Mobile</h3>
-                            <small>مميز لليوم</small>
-                        </div>
-                    </div>
-                    <ul class="game-options">
-                        <li><span>الباقة الصغيرة</span><strong>$ 6</strong></li>
-                        <li><span>الباقة المتوسطة</span><strong>$ 11</strong></li>
-                        <li><span>الباقة الكبيرة</span><strong>$ 22</strong></li>
-                    </ul>
-                    <button type="button">طلب الآن</button>
-                </article>
-
-                <article class="game-card" data-name="valorant رويال باقات">
-                    <div class="game-header">
-                        <div class="game-icon" aria-hidden="true">🎯</div>
-                        <div>
-                            <h3>Valorant</h3>
-                            <small>بطاقات متاحة</small>
-                        </div>
-                    </div>
-                    <ul class="game-options">
-                        <li><span>420 VP</span><strong>$ 5</strong></li>
-                        <li><span>1375 VP</span><strong>$ 15</strong></li>
-                        <li><span>4200 VP</span><strong>$ 42</strong></li>
-                    </ul>
-                    <button type="button">طلب الآن</button>
-                </article>
-            </div>
-
-            <div class="quick-actions">
-                <button type="button">🔥 الأكثر طلباً</button>
-                <button type="button">⚡ عروض اليوم</button>
-                <button type="button">🛡️ خدمات موثوقة</button>
-                <button type="button">💬 دعم سريع</button>
-            </div>
-        </main>
-
-        <nav class="bottom-nav" aria-label="التنقل السفلي">
-            <button class="nav-icon active" type="button">⌂<span>الرئيسية</span></button>
-            <button class="nav-icon" type="button">◫<span>الطلبات</span></button>
-            <button class="nav-icon" type="button">◎<span>الملف</span></button>
-            <button class="nav-icon" type="button">⚙<span>الإعدادات</span></button>
-        </nav>
-    </div>
-
-    <script>
-        const search = document.querySelector('#search');
-        const items = [...document.querySelectorAll('.store-item, .game-card')];
-
-        search.addEventListener('input', () => {
-            const query = search.value.trim().toLowerCase();
-            items.forEach(item => {
-                const name = (item.dataset.name || '').toLowerCase();
-                item.hidden = query && !name.includes(query);
-            });
-        });
-
-        document.querySelectorAll('.store-item, .game-card button').forEach(item => {
-            item.addEventListener('click', event => event.preventDefault());
-        });
-    </script>
+    document.querySelectorAll('.store-item, .game-card button').forEach(item => {
+      item.addEventListener('click', event => event.preventDefault());
+    });
+  </script>
 </body>
 </html>
