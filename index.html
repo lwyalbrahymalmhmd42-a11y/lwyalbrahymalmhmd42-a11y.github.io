@@ -3,508 +3,478 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الهاشمي | متجر شحن الألعاب</title>
-    <meta name="description" content="الهاشمي متجر شحن الألعاب والتطبيقات والاشتراكات الرقمية - متاح على مدار 24 ساعة" />
+    <title>الهاشمي | متجر رقمي</title>
+    <meta name="description" content="متجر الهاشمي لتجديد الألعاب والتطبيقات والاشتراكات الرقمية" />
     <style>
         :root {
-            --navy: #071a3b;
-            --navy-2: #0d2d68;
-            --blue: #1967d2;
-            --cyan: #38bdf8;
-            --gold: #f7c75b;
-            --ink: #13213d;
-            --muted: #71809a;
-            --surface: #ffffff;
-            --page: #eef4ff;
-            --line: #e3eaf5;
-            --success: #16a375;
-            --shadow: 0 18px 40px rgba(20, 49, 101, .12);
-            --pink: #ff4fe6;
-            --purple: #6d47ff;
-            --bg-1: #020b1b;
-            --bg-2: #0b1d47;
+            --bg-1: #071120;
+            --bg-2: #0d1d38;
+            --panel: rgba(15, 25, 46, 0.82);
+            --panel-strong: #101f3a;
+            --panel-soft: #162b4d;
+            --card: #f8fbff;
+            --line: rgba(164, 181, 211, 0.25);
+            --text: #eaf3ff;
+            --muted: #a1b6d8;
+            --blue: #4aa7ff;
+            --cyan: #5fe3ff;
+            --gold: #ffd36d;
+            --pink: #ff72d2;
+            --green: #2ad49f;
+            --purple: #8c7bff;
+            --orange: #ff9e5d;
+            --shadow: 0 22px 50px rgba(5, 12, 22, 0.4);
         }
 
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Tahoma, Arial, sans-serif;
-            color: var(--ink);
+            color: var(--text);
             background:
-                radial-gradient(circle at top, rgba(93, 190, 255, 0.35), transparent 32%),
-                linear-gradient(180deg, #06112a 0%, #0a1639 100%);
+                radial-gradient(circle at top, rgba(94, 176, 255, 0.3), transparent 25%),
+                linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
             line-height: 1.5;
         }
-        button, input { font: inherit; }
+        a, button, input { font: inherit; }
+        button, input { border: none; }
         button { cursor: pointer; }
 
         .app-shell {
             width: min(100%, 520px);
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(7, 17, 32, 0.94), rgba(9, 18, 35, 0.97));
             min-height: 100vh;
-            margin: auto;
-            background:
-                linear-gradient(180deg, rgba(9, 18, 43, 0.96), rgba(10, 18, 40, 0.96));
-            box-shadow: 0 0 55px rgba(12, 38, 82, .35);
-            padding-bottom: 104px;
-            overflow: hidden;
+            box-shadow: 0 0 60px rgba(4, 9, 18, 0.45);
             position: relative;
+            overflow: hidden;
         }
 
         .app-shell::before {
             content: "";
             position: absolute;
             inset: 0;
-            background:
-                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
-                linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
-            background-size: 26px 26px;
-            opacity: 0.28;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.4;
             pointer-events: none;
         }
 
-        .topbar {
+        .topbar, main, .bottom-nav {
             position: relative;
             z-index: 1;
-            color: #fff;
-            padding: 14px 18px 18px;
-            background: linear-gradient(180deg, rgba(18, 24, 52, 0.95), rgba(12, 28, 60, 0.9));
-            border-radius: 0 0 24px 24px;
-            box-shadow: 0 12px 35px rgba(6, 13, 21, 0.5);
         }
 
-        .status-row, .brand-row, .section-heading, .balance-line, .search-box, .quick-actions, .bottom-nav {
+        .topbar {
+            padding: 16px 16px 0;
+        }
+
+        .top-meta {
             display: flex;
             align-items: center;
-        }
-
-        .status-row {
             justify-content: space-between;
-            color: #d9e8ff;
-            font-size: .78rem;
+            color: var(--muted);
+            font-size: 0.72rem;
             margin-bottom: 18px;
         }
-
-        .status-left, .status-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .signal { color: #74d9ff; font-size: 1.1rem; }
+        .status-left, .status-right { display: flex; align-items: center; gap: 8px; }
+        .signal { color: var(--cyan); font-size: 1.05rem; }
         .battery {
-            width: 25px;
-            height: 13px;
-            border: 2px solid #d9e8ff;
-            border-radius: 4px;
+            width: 28px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 5px;
             position: relative;
-            background: linear-gradient(90deg, #7be3bc 0 72%, transparent 72%);
+            background: linear-gradient(90deg, #5ee2ac 0 72%, transparent 72%);
         }
         .battery::after {
             content: "";
             position: absolute;
-            inset: 3px -5px auto auto;
+            top: 3px;
+            right: -5px;
             width: 3px;
-            height: 5px;
-            border-radius: 1px;
-            background: #d9e8ff;
+            height: 6px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.7);
         }
 
         .brand-row {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
+            padding: 10px 0 14px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             min-width: 0;
         }
-
         .brand-mark {
             width: 50px;
             height: 50px;
-            flex: 0 0 auto;
             display: grid;
             place-items: center;
-            border-radius: 16px;
-            color: #09204a;
-            background: linear-gradient(135deg, #ffe18a, #f3ad38);
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--gold), #f29c38);
+            color: #172b4d;
             font-size: 1.6rem;
             font-weight: 900;
-            box-shadow: 0 10px 28px rgba(247, 199, 91, 0.4);
+            box-shadow: 0 15px 30px rgba(255, 195, 70, 0.3);
         }
-
         .brand-name {
-            font-size: 1.3rem;
             font-weight: 900;
+            font-size: 1.3rem;
             line-height: 1.1;
             white-space: nowrap;
         }
         .brand-name small {
             display: block;
             margin-top: 4px;
-            color: #b9d2ff;
-            font-size: .65rem;
-            letter-spacing: .12em;
-            font-weight: 700;
+            font-size: 0.62rem;
+            letter-spacing: 0.11em;
+            color: var(--muted);
+            font-weight: 800;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
         }
-
         .vip-tag {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 58px;
-            padding: 7px 10px;
+            min-width: 56px;
+            padding: 8px 10px;
             border-radius: 12px;
+            background: linear-gradient(135deg, #ff8b4f, #ff567e);
             color: #fff;
-            background: linear-gradient(135deg, #ff9d4d, #f55f5f);
-            font-size: .72rem;
+            font-size: 0.68rem;
             font-weight: 900;
-            box-shadow: 0 8px 24px rgba(247, 116, 69, 0.25);
+            box-shadow: 0 12px 24px rgba(255,110,98,0.25);
         }
-
-        .icon-button, .menu-button {
+        .icon-button {
             position: relative;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255,255,255,.18);
+            width: 42px;
+            height: 42px;
             border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.14);
             color: #fff;
-            background: rgba(255,255,255,.08);
-            display: grid;
-            place-items: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
-
-        .notification-count {
+        .notification-dot {
             position: absolute;
-            top: -7px;
-            right: -6px;
-            min-width: 18px;
-            height: 18px;
+            top: -5px;
+            right: -4px;
+            min-width: 16px;
+            height: 16px;
             padding: 0 4px;
+            border-radius: 999px;
+            background: #ff4d67;
+            color: #fff;
+            font-size: 0.58rem;
+            font-weight: 900;
             display: grid;
             place-items: center;
-            border-radius: 99px;
-            color: #fff;
-            background: #ff4d4d;
-            font-size: .64rem;
-            font-weight: 900;
         }
 
         main {
-            position: relative;
-            z-index: 1;
+            padding: 0 16px 110px;
         }
 
-        .promo-banner {
+        .hero {
             position: relative;
-            margin: 18px 14px 0;
-            padding: 18px 16px 20px;
             border-radius: 26px;
-            border: 4px solid rgba(255, 88, 251, 0.9);
+            padding: 18px 18px 16px;
             background:
-                radial-gradient(circle at 50% 16%, rgba(56, 189, 248, 0.35), transparent 30%),
-                linear-gradient(160deg, rgba(9, 18, 43, 0.96), rgba(20, 31, 70, 0.9));
-            box-shadow: 0 0 35px rgba(255, 74, 235, 0.35), inset 0 0 20px rgba(255,255,255,0.08);
+                radial-gradient(circle at 50% 12%, rgba(108, 207, 255, 0.38), transparent 24%),
+                linear-gradient(135deg, rgba(16,29,56,0.9), rgba(21,39,72,0.96));
+            border: 1px solid rgba(137, 168, 216, 0.16);
+            box-shadow: var(--shadow);
             overflow: hidden;
         }
-        .promo-banner::before {
+        .hero::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
-            pointer-events: none;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
         }
-
-        .promo-top {
+        .hero-head {
             position: relative;
             z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            margin-bottom: 10px;
             font-weight: 900;
             color: #fff;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.18);
+            font-size: 0.92rem;
         }
-        .promo-top .mini-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 18px;
-            border: 3px solid rgba(255,255,255,0.7);
+        .hero-emoji {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
             display: grid;
             place-items: center;
-            font-size: 1.4rem;
-            color: #fff;
-            background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(102, 80, 255, .28));
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.18);
         }
 
-        .promo-title {
+        .hero-title {
             position: relative;
             z-index: 1;
-            margin: 0;
+            margin: 16px 0 10px;
             text-align: center;
             color: #fff;
-            font-size: clamp(2rem, 7vw, 4rem);
-            line-height: 1;
+            font-size: clamp(2rem, 7vw, 3.6rem);
+            line-height: 0.95;
             font-weight: 900;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.06em;
         }
-        .promo-title span {
+        .hero-title span {
             display: block;
-            font-size: clamp(1.1rem, 4vw, 2rem);
-            letter-spacing: 0;
-            color: #a9ebff;
             margin-top: 8px;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #d8ebff;
+            letter-spacing: 0;
             font-weight: 800;
         }
 
-        .promo-phone {
+        .hero-phone {
             position: relative;
             z-index: 1;
             margin: 18px auto 0;
-            width: min(100%, 390px);
+            width: min(100%, 360px);
             padding: 14px 18px;
-            border-radius: 20px;
-            border: 3px solid rgba(255, 99, 234, 0.9);
-            background: linear-gradient(180deg, rgba(30,17,73,.75), rgba(43,8,92,.82));
+            border-radius: 18px;
             text-align: center;
-            box-shadow: inset 0 0 18px rgba(255,255,255,.06), 0 0 18px rgba(255, 104, 242, 0.25);
+            background: linear-gradient(135deg, rgba(111, 83, 255, 0.7), rgba(19, 178, 255, 0.5));
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 18px rgba(255,255,255,0.08), 0 0 20px rgba(108, 159, 255, 0.2);
         }
-        .promo-phone strong {
+        .hero-phone strong {
             display: block;
-            color: #fff;
-            font-size: clamp(1.8rem, 6vw, 3.2rem);
-            letter-spacing: 0.05em;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            letter-spacing: 0.06em;
             font-weight: 900;
+            color: #fff;
         }
-        .promo-phone small {
+        .hero-phone small {
             display: block;
-            margin-top: 8px;
-            color: #dfeeff;
-            font-size: 1rem;
+            margin-top: 7px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
             font-weight: 700;
         }
 
-        .promo-note {
+        .hero-note {
             position: relative;
             z-index: 1;
             margin-top: 14px;
             text-align: center;
             color: #dfeeff;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-        }
-
-        .hero {
-            margin: 18px 14px 0;
-            padding: 20px 18px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 22px;
-            color: #fff;
-            background: linear-gradient(135deg, #1558b8, #0b2456);
-            box-shadow: 0 18px 28px rgba(13, 38, 90, 0.2);
-        }
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 170px;
-            height: 170px;
-            left: -50px;
-            bottom: -100px;
-            border-radius: 50%;
-            background: rgba(79, 199, 255, .22);
-        }
-        .hero-content { position: relative; z-index: 1; max-width: 78%; }
-        .hero-kicker { color: #9ddcff; font-size: .78rem; font-weight: 700; }
-        .hero h1 { margin: 5px 0 7px; font-size: 1.42rem; line-height: 1.35; }
-        .hero p { margin: 0 0 14px; color: #dbeafe; font-size: .82rem; }
-        .hero-button {
-            padding: 9px 15px;
-            border: 0;
-            border-radius: 10px;
-            color: #10265a;
-            background: var(--gold);
-            font-size: .8rem;
-            font-weight: 900;
-        }
-
-        .store-wrap { padding: 18px 14px 0; }
-
-        .balance-card {
-            padding: 15px 16px;
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            background: var(--surface);
-            box-shadow: 0 8px 22px rgba(35, 67, 124, .06);
-        }
-
-        .balance-line {
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .balance-label { color: var(--muted); font-size: .75rem; }
-        .balance-value {
-            display: block;
-            margin-top: 3px;
-            color: var(--navy);
-            font-size: 1.3rem;
-            font-weight: 900;
-            direction: ltr;
-            text-align: right;
-        }
-        .add-balance {
-            padding: 8px 12px;
-            border: 0;
-            border-radius: 10px;
-            color: #fff;
-            background: var(--blue);
-            font-size: .75rem;
+            font-size: 0.75rem;
             font-weight: 800;
         }
 
-        .search-box {
-            gap: 8px;
-            margin-top: 14px;
-            padding: 0 13px;
-            height: 45px;
+        .balances {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .balance-card,
+        .mini-card {
+            background: rgba(17, 32, 57, 0.9);
             border: 1px solid var(--line);
-            border-radius: 13px;
-            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 15px;
+            box-shadow: 0 12px 26px rgba(4, 8, 18, 0.16);
+        }
+        .balance-label {
+            display: block;
+            color: var(--muted);
+            font-size: 0.7rem;
+        }
+        .balance-value {
+            display: block;
+            margin-top: 8px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            direction: ltr;
+            color: #fff;
+        }
+        .mini-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--gold);
+            font-size: 1.6rem;
+        }
+        .mini-card span {
+            display: block;
+            font-size: 0.72rem;
+            margin-top: 6px;
+            color: var(--muted);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding: 0 12px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(18, 35, 62, 0.9);
+            border: 1px solid var(--line);
             color: var(--muted);
         }
         .search-box input {
             width: 100%;
-            border: 0;
-            outline: 0;
-            color: var(--ink);
             background: transparent;
-            font-size: .85rem;
+            color: var(--text);
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .search-box input::placeholder { color: var(--muted); }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+        .section-head h2 {
+            margin: 0;
+            font-size: 1.08rem;
+            color: #fff;
+        }
+        .section-head a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 800;
         }
 
-        .section-heading {
-            justify-content: space-between;
-            margin: 23px 2px 13px;
+        .chip-row {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 6px;
         }
-        .section-heading h2 {
-            margin: 0;
-            color: var(--navy);
-            font-size: 1.05rem;
-        }
-        .section-heading a {
-            color: var(--blue);
-            font-size: .75rem;
+        .chip-row::-webkit-scrollbar { display: none; }
+        .chip {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text);
+            font-size: 0.74rem;
             font-weight: 800;
+        }
+        .chip.active {
+            background: linear-gradient(135deg, var(--blue), #7fb3ff);
+            color: #fff;
+            border-color: transparent;
         }
 
         .store-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 12px;
+            gap: 10px;
+            margin-top: 14px;
         }
-
         .store-item {
-            min-width: 0;
-            padding: 0;
-            border: 0;
-            border-radius: 20px;
-            text-align: center;
-            background: transparent;
-            box-shadow: none;
             text-decoration: none;
             color: inherit;
-            transition: transform .2s ease, box-shadow .2s ease;
+            display: block;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .store-item:hover {
             transform: translateY(-3px);
+            box-shadow: 0 18px 30px rgba(9, 20, 35, 0.22);
         }
-        .store-item:focus-within {
-            outline: 3px solid rgba(25,103,210,.25);
-        }
-
         .store-thumb {
-            height: 110px;
+            height: 108px;
             display: grid;
             place-items: center;
-            border-radius: 20px 20px 0 0;
-            overflow: hidden;
-            background: radial-gradient(circle at 20% 20%, rgba(72, 142, 255, 0.5), transparent 25%), linear-gradient(135deg, #071d52, #0d2e6c 60%, #08162f);
             position: relative;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d2457, #102f6a 60%, #09152d);
         }
         .store-thumb::before {
             content: "";
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(rgba(157, 177, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(157, 177, 255, 0.08) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
             background-size: 18px 18px;
         }
-
         .store-logo {
-            width: 66px;
-            height: 66px;
-            display: grid;
-            place-items: center;
-            border-radius: 18px;
-            color: #fff;
-            font-size: 2rem;
             position: relative;
             z-index: 1;
-            box-shadow: inset 0 2px 8px rgba(255,255,255,.25), 0 8px 16px rgba(0, 0, 0, .18);
+            width: 68px;
+            height: 68px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            box-shadow: inset 0 2px 8px rgba(255,255,255,0.25), 0 8px 18px rgba(0,0,0,0.18);
         }
-
-        .gaming { background: linear-gradient(135deg, #ff5bc6, #ff9f3d); }
-        .app { background: linear-gradient(135deg, #66d8ff, #4775ef); }
-        .card { background: linear-gradient(135deg, #67e8c0, #159b79); }
-        .social { background: linear-gradient(135deg, #26bfed, #d531c8); }
-        .account { background: linear-gradient(135deg, #e6edf8, #8ba2c4); }
-        .soft { background: linear-gradient(135deg, #57caf9, #1b5db8); }
-        .premium { background: linear-gradient(135deg, #76e0ff, #5b78f1); }
-        .tv { background: linear-gradient(135deg, #ffa043, #745fe0); }
-        .design { background: linear-gradient(135deg, #6fe1ff, #7a49c5); }
-        .numbers { background: linear-gradient(135deg, #58d2ff, #3ac786); }
-        .vpn { background: linear-gradient(135deg, #8bd3ff, #5d6ef5); }
-
         .store-label {
             display: block;
-            margin-top: 8px;
-            color: #14294f;
-            font-size: .82rem;
-            font-weight: 900;
-            line-height: 1.35;
+            padding: 10px 8px 12px;
             text-align: center;
+            font-size: 0.74rem;
+            line-height: 1.4;
+            font-weight: 800;
+            color: #f1f6ff;
         }
+
+        .gaming { background: linear-gradient(135deg, #ff7ecb, #ff9d4d); }
+        .apps { background: linear-gradient(135deg, #67d4ff, #4c7fff); }
+        .cards { background: linear-gradient(135deg, #89f0c2, #19a07a); }
+        .social { background: linear-gradient(135deg, #26c9ff, #d65df7); }
+        .account { background: linear-gradient(135deg, #dfe9fb, #8da8c8); }
+        .soft { background: linear-gradient(135deg, #79d6ff, #3f7de8); }
+        .premium { background: linear-gradient(135deg, #8ae9ff, #687af4); }
+        .tv { background: linear-gradient(135deg, #ffd38b, #905ff0); }
+        .design { background: linear-gradient(135deg, #8ae7ff, #8b4ef7); }
+        .num { background: linear-gradient(135deg, #5ed6ff, #36d29b); }
+        .vpn { background: linear-gradient(135deg, #9dc8ff, #5b7df6); }
 
         .game-list {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
-            margin-top: 12px;
+            margin-top: 10px;
         }
         .game-card {
             padding: 12px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--line);
-            border-radius: 18px;
-            background: var(--surface);
-            box-shadow: 0 10px 22px rgba(35, 67, 124, .05);
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-        .game-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            box-shadow: 0 12px 20px rgba(10, 18, 29, 0.12);
         }
         .game-header {
             display: flex;
@@ -518,20 +488,20 @@
             display: grid;
             place-items: center;
             border-radius: 12px;
-            background: linear-gradient(135deg, #ff7ad9, #ffa94d);
+            background: linear-gradient(135deg, #ffad4d, #ff5fc9);
             font-size: 1.2rem;
-            box-shadow: inset 0 2px 8px rgba(255,255,255,.3);
+            box-shadow: inset 0 2px 8px rgba(255,255,255,0.3);
         }
         .game-header h3 {
             margin: 0;
-            color: var(--navy);
-            font-size: .9rem;
+            color: #fff;
+            font-size: 0.88rem;
         }
         .game-header small {
             display: block;
-            color: var(--muted);
-            font-size: .62rem;
             margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.6rem;
         }
         .game-options {
             list-style: none;
@@ -547,101 +517,103 @@
             gap: 8px;
             padding: 7px 8px;
             border-radius: 10px;
-            background: #f3f7ff;
-            color: var(--navy-2);
-            font-size: .72rem;
+            background: rgba(142, 177, 255, 0.08);
+            color: #dfeeff;
+            font-size: 0.7rem;
             font-weight: 700;
         }
         .game-options strong {
-            color: var(--blue);
-            font-size: .75rem;
+            color: var(--gold);
+            font-size: 0.72rem;
         }
         .game-card button {
             width: 100%;
-            border: 0;
             border-radius: 11px;
             padding: 9px 10px;
             background: linear-gradient(135deg, #0d2d68, #1967d2);
             color: #fff;
-            font-size: .75rem;
+            font-size: 0.74rem;
             font-weight: 900;
         }
 
         .quick-actions {
-            gap: 8px;
-            margin-top: 18px;
+            display: flex;
+            gap: 10px;
             overflow-x: auto;
             scrollbar-width: none;
-            padding-bottom: 4px;
+            margin-top: 18px;
+            padding-bottom: 6px;
         }
         .quick-actions::-webkit-scrollbar { display: none; }
         .quick-actions button {
             flex: 0 0 auto;
-            padding: 9px 13px;
-            border: 1px solid var(--line);
             border-radius: 12px;
-            color: var(--navy-2);
-            background: var(--surface);
-            font-size: .75rem;
+            padding: 9px 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line);
+            color: #dfeeff;
+            font-size: 0.74rem;
             font-weight: 800;
         }
         .quick-actions button:first-child {
-            color: #fff;
-            border-color: var(--blue);
-            background: var(--blue);
+            background: linear-gradient(135deg, #f7c75b, #ff7b7b);
+            border-color: transparent;
+            color: #1a254a;
         }
 
         .bottom-nav {
             position: fixed;
             left: 50%;
             bottom: 0;
-            z-index: 20;
-            justify-content: space-around;
+            z-index: 10;
             width: min(100%, 520px);
-            padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-            border-top: 1px solid rgba(255,255,255,.08);
-            background: rgba(11, 17, 34, 0.94);
-            backdrop-filter: blur(12px);
             transform: translateX(-50%);
-            box-shadow: 0 -12px 24px rgba(2, 7, 20, .25);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+            background: rgba(9, 17, 32, 0.94);
+            backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(255,255,255,0.09);
+            box-shadow: 0 -12px 24px rgba(2,7,20,.25);
         }
         .nav-icon {
             min-width: 60px;
-            padding: 5px 10px;
             border: 0;
             border-radius: 12px;
-            color: #9aa7ba;
             background: transparent;
+            color: #9baecb;
             font-size: 1.35rem;
+            padding: 5px 10px;
         }
         .nav-icon span {
             display: block;
             margin-top: 1px;
-            font-size: .62rem;
+            font-size: 0.62rem;
             font-weight: 800;
         }
         .nav-icon.active {
             color: var(--cyan);
-            background: rgba(56, 189, 248, 0.12);
+            background: rgba(95, 227, 255, 0.08);
         }
 
         @media (max-width: 390px) {
+            .store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .game-list { grid-template-columns: 1fr; }
+            .balances { grid-template-columns: 1fr; }
             .brand-name { font-size: 1.05rem; }
             .vip-tag { display: none; }
-            .store-grid { gap: 9px; }
-            .store-item { padding-inline: 4px; }
-            .game-list { grid-template-columns: 1fr; }
-            .store-label { font-size: .74rem; }
+            .store-label { font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
     <div class="app-shell">
         <header class="topbar">
-            <div class="status-row" aria-label="معلومات الجهاز">
+            <div class="top-meta" aria-label="معلومات الجهاز">
                 <div class="status-left"><span class="signal">◔</span><span>4G</span></div>
                 <div class="status-right"><span>3:04</span><span class="battery" aria-hidden="true"></span></div>
             </div>
+
             <div class="brand-row">
                 <div class="brand">
                     <div class="brand-mark" aria-hidden="true">ا</div>
@@ -649,215 +621,189 @@
                 </div>
                 <div class="header-actions">
                     <div class="vip-tag">VIP1</div>
-                    <button class="icon-button" type="button" aria-label="الإشعارات">🔔<span class="notification-count">48</span></button>
-                    <button class="menu-button" type="button" aria-label="القائمة">☰</button>
+                    <button class="icon-button" type="button" aria-label="الإشعارات">
+                        🔔
+                        <span class="notification-dot">48</span>
+                    </button>
+                    <button class="icon-button" type="button" aria-label="القائمة">☰</button>
                 </div>
             </div>
         </header>
 
         <main>
-            <section class="promo-banner" aria-label="عرض متجر الشحن">
-                <div class="promo-top">
-                    <div class="mini-icon" aria-hidden="true">🎮</div>
+            <section class="hero" aria-label="عرض متجر شحن الألعاب">
+                <div class="hero-head">
+                    <div class="hero-emoji" aria-hidden="true">🎮</div>
                     <div>الهاشمي</div>
-                    <div class="mini-icon" aria-hidden="true">💰</div>
+                    <div class="hero-emoji" aria-hidden="true">💰</div>
                 </div>
-                <h1 class="promo-title">DIGITAL GAMES TOP-UP<span>متاجر شحن الألعاب والتطبيقات</span></h1>
-                <div class="promo-phone">
+                <h1 class="hero-title">DIGITAL<br>GAME STORE<span>تجديد الألعاب والتطبيقات والاشتراكات</span></h1>
+                <div class="hero-phone">
                     <strong>0983311260</strong>
                     <small>للاشتراك والاستفسار</small>
                 </div>
-                <div class="promo-note">متاح على مدار 24 ساعة</div>
+                <div class="hero-note">متاح 24 ساعة — توصيل فوري ومضمون</div>
             </section>
 
-            <section class="hero" aria-label="عرض المتجر">
-                <div class="hero-content">
-                    <span class="hero-kicker">أهلاً بك في متجر الهاشمي</span>
-                    <h1>كل خدماتك الرقمية في مكان واحد</h1>
-                    <p>تفعيل فوري، شحن ألعاب، اشتراكات، تطبيقات، حسابات ورسائل مميزة.</p>
-                    <button class="hero-button" type="button">تواصل الآن</button>
-                </div>
-            </section>
-
-            <section class="store-wrap">
+            <div class="balances">
                 <div class="balance-card">
-                    <div class="balance-line">
-                        <div>
-                            <span class="balance-label">الرصيد الحالي</span>
-                            <strong class="balance-value">$ 0.021</strong>
-                        </div>
-                        <button class="add-balance" type="button">إضافة رصيد</button>
+                    <span class="balance-label">الرصيد الحالي</span>
+                    <strong class="balance-value">$ 0.021</strong>
+                </div>
+                <div class="mini-card">
+                    <div>
+                        ⚡
+                        <span>مميز</span>
                     </div>
                 </div>
+            </div>
 
-                <label class="search-box" for="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="ابحث عن خدمة أو منتج..." /></label>
+            <label class="search-box" for="search">
+                <span aria-hidden="true">⌕</span>
+                <input id="search" type="search" placeholder="ابحث عن خدمة أو منتج..." />
+            </label>
 
-                <div class="section-heading" id="categories">
-                    <h2>الأقسام</h2>
-                    <a href="#categories">عرض الكل</a>
-                </div>
+            <div class="section-head" id="categories">
+                <h2>الأقسام</h2>
+                <a href="#categories">عرض الكل</a>
+            </div>
 
-                <div class="store-grid">
-                    <a class="store-item" href="#" data-name="الرصيد والعمولات">
-                        <div class="store-thumb"><div class="store-logo gaming">💳</div></div>
-                        <span class="store-label">الرصيد والعمولات</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="التطبيقات">
-                        <div class="store-thumb"><div class="store-logo app">📱</div></div>
-                        <span class="store-label">التطبيقات</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="الألعاب">
-                        <div class="store-thumb"><div class="store-logo gaming">🎮</div></div>
-                        <span class="store-label">الألعاب</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="البطاقات">
-                        <div class="store-thumb"><div class="store-logo card">💸</div></div>
-                        <span class="store-label">البطاقات</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="السوشيال ميديا">
-                        <div class="store-thumb"><div class="store-logo social">📣</div></div>
-                        <span class="store-label">السوشيال ميديا</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="حسابات جاهزة">
-                        <div class="store-thumb"><div class="store-logo account">👤</div></div>
-                        <span class="store-label">حسابات جاهزة</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="برامج">
-                        <div class="store-thumb"><div class="store-logo soft">🧩</div></div>
-                        <span class="store-label">برامج</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="تفعيل الحسابات">
-                        <div class="store-thumb"><div class="store-logo premium">✅</div></div>
-                        <span class="store-label">تفعيل الحسابات</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="اشتراكات الشاشة">
-                        <div class="store-thumb"><div class="store-logo tv">📺</div></div>
-                        <span class="store-label">اشتراكات الشاشة</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="تطبيقات تصميم">
-                        <div class="store-thumb"><div class="store-logo design">🖌️</div></div>
-                        <span class="store-label">تطبيقات تصميم</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="أرقام">
-                        <div class="store-thumb"><div class="store-logo numbers">☎️</div></div>
-                        <span class="store-label">أرقام</span>
-                    </a>
-                    <a class="store-item" href="#" data-name="VPN">
-                        <div class="store-thumb"><div class="store-logo vpn">🔒</div></div>
-                        <span class="store-label">VPN</span>
-                    </a>
-                </div>
+            <div class="chip-row" aria-label="فئات المتجر">
+                <button class="chip active" type="button">🔥 الأكثر طلباً</button>
+                <button class="chip" type="button">🎮 ألعاب</button>
+                <button class="chip" type="button">📱 تطبيقات</button>
+                <button class="chip" type="button">📺 شاشات</button>
+                <button class="chip" type="button">💳 بطاقات</button>
+            </div>
 
-                <div class="section-heading" id="games">
-                    <h2>العاب</h2>
-                    <a href="#games">عرض الكل</a>
-                </div>
+            <div class="store-grid">
+                <a class="store-item" href="#" data-name="الرصيد والعمولات">
+                    <div class="store-thumb"><div class="store-logo gaming">💳</div></div>
+                    <span class="store-label">الرصيد والعمولات</span>
+                </a>
+                <a class="store-item" href="#" data-name="التطبيقات">
+                    <div class="store-thumb"><div class="store-logo apps">📱</div></div>
+                    <span class="store-label">التطبيقات</span>
+                </a>
+                <a class="store-item" href="#" data-name="الألعاب">
+                    <div class="store-thumb"><div class="store-logo gaming">🎮</div></div>
+                    <span class="store-label">الألعاب</span>
+                </a>
+                <a class="store-item" href="#" data-name="البطاقات">
+                    <div class="store-thumb"><div class="store-logo cards">💸</div></div>
+                    <span class="store-label">البطاقات</span>
+                </a>
+                <a class="store-item" href="#" data-name="السوشيال ميديا">
+                    <div class="store-thumb"><div class="store-logo social">📣</div></div>
+                    <span class="store-label">السوشيال ميديا</span>
+                </a>
+                <a class="store-item" href="#" data-name="حسابات جاهزة">
+                    <div class="store-thumb"><div class="store-logo account">👤</div></div>
+                    <span class="store-label">حسابات جاهزة</span>
+                </a>
+                <a class="store-item" href="#" data-name="برامج">
+                    <div class="store-thumb"><div class="store-logo soft">🧩</div></div>
+                    <span class="store-label">برامج</span>
+                </a>
+                <a class="store-item" href="#" data-name="تفعيل الحسابات">
+                    <div class="store-thumb"><div class="store-logo premium">✅</div></div>
+                    <span class="store-label">تفعيل الحسابات</span>
+                </a>
+                <a class="store-item" href="#" data-name="اشتراكات الشاشة">
+                    <div class="store-thumb"><div class="store-logo tv">📺</div></div>
+                    <span class="store-label">اشتراكات الشاشة</span>
+                </a>
+                <a class="store-item" href="#" data-name="تطبيقات تصميم">
+                    <div class="store-thumb"><div class="store-logo design">🖌️</div></div>
+                    <span class="store-label">تطبيقات تصميم</span>
+                </a>
+                <a class="store-item" href="#" data-name="أرقام">
+                    <div class="store-thumb"><div class="store-logo num">☎️</div></div>
+                    <span class="store-label">أرقام</span>
+                </a>
+                <a class="store-item" href="#" data-name="VPN">
+                    <div class="store-thumb"><div class="store-logo vpn">🔒</div></div>
+                    <span class="store-label">VPN</span>
+                </a>
+            </div>
 
-                <div class="game-list">
-                    <article class="game-card" data-name="pubg mobile شحن بطاقات روبية">
-                        <div class="game-header">
-                            <div class="game-icon" aria-hidden="true">🎮</div>
-                            <div>
-                                <h3>PUBG Mobile</h3>
-                                <small>تفعيل فوري</small>
-                            </div>
+            <div class="section-head" id="games">
+                <h2>العاب مميزة</h2>
+                <a href="#games">عرض الكل</a>
+            </div>
+
+            <div class="game-list">
+                <article class="game-card" data-name="pubg mobile شحن بطاقات روبية">
+                    <div class="game-header">
+                        <div class="game-icon" aria-hidden="true">🎮</div>
+                        <div>
+                            <h3>PUBG Mobile</h3>
+                            <small>تفعيل فوري</small>
                         </div>
-                        <ul class="game-options">
-                            <li><span>بطاقة 60</span><strong>$ 8</strong></li>
-                            <li><span>بطاقة 150</span><strong>$ 15</strong></li>
-                            <li><span>بطاقة 355</span><strong>$ 29</strong></li>
-                        </ul>
-                        <button type="button">طلب الآن</button>
-                    </article>
+                    </div>
+                    <ul class="game-options">
+                        <li><span>بطاقة 60</span><strong>$ 8</strong></li>
+                        <li><span>بطاقة 150</span><strong>$ 15</strong></li>
+                        <li><span>بطاقة 355</span><strong>$ 29</strong></li>
+                    </ul>
+                    <button type="button">طلب الآن</button>
+                </article>
 
-                    <article class="game-card" data-name="free fire شحن الرصيد">
-                        <div class="game-header">
-                            <div class="game-icon" aria-hidden="true">🔥</div>
-                            <div>
-                                <h3>Free Fire</h3>
-                                <small>باقة موثوقة</small>
-                            </div>
+                <article class="game-card" data-name="free fire شحن الرصيد">
+                    <div class="game-header">
+                        <div class="game-icon" aria-hidden="true">🔥</div>
+                        <div>
+                            <h3>Free Fire</h3>
+                            <small>باقة موثوقة</small>
                         </div>
-                        <ul class="game-options">
-                            <li><span>50 Diamonds</span><strong>$ 4</strong></li>
-                            <li><span>100 Diamonds</span><strong>$ 8</strong></li>
-                            <li><span>310 Diamonds</span><strong>$ 19</strong></li>
-                        </ul>
-                        <button type="button">طلب الآن</button>
-                    </article>
+                    </div>
+                    <ul class="game-options">
+                        <li><span>50 Diamonds</span><strong>$ 4</strong></li>
+                        <li><span>100 Diamonds</span><strong>$ 8</strong></li>
+                        <li><span>310 Diamonds</span><strong>$ 19</strong></li>
+                    </ul>
+                    <button type="button">طلب الآن</button>
+                </article>
 
-                    <article class="game-card" data-name="call of duty mobile شحن بينات">
-                        <div class="game-header">
-                            <div class="game-icon" aria-hidden="true">⚡</div>
-                            <div>
-                                <h3>COD Mobile</h3>
-                                <small>مميز لليوم</small>
-                            </div>
+                <article class="game-card" data-name="call of duty mobile شحن بينات">
+                    <div class="game-header">
+                        <div class="game-icon" aria-hidden="true">⚡</div>
+                        <div>
+                            <h3>COD Mobile</h3>
+                            <small>مميز لليوم</small>
                         </div>
-                        <ul class="game-options">
-                            <li><span>الباقة الصغيرة</span><strong>$ 6</strong></li>
-                            <li><span>الباقة المتوسطة</span><strong>$ 11</strong></li>
-                            <li><span>الباقة الكبيرة</span><strong>$ 22</strong></li>
-                        </ul>
-                        <button type="button">طلب الآن</button>
-                    </article>
+                    </div>
+                    <ul class="game-options">
+                        <li><span>الباقة الصغيرة</span><strong>$ 6</strong></li>
+                        <li><span>الباقة المتوسطة</span><strong>$ 11</strong></li>
+                        <li><span>الباقة الكبيرة</span><strong>$ 22</strong></li>
+                    </ul>
+                    <button type="button">طلب الآن</button>
+                </article>
 
-                    <article class="game-card" data-name="valorant رويال باقات">
-                        <div class="game-header">
-                            <div class="game-icon" aria-hidden="true">🎯</div>
-                            <div>
-                                <h3>Valorant</h3>
-                                <small>بطاقات متاحة</small>
-                            </div>
+                <article class="game-card" data-name="valorant رويال باقات">
+                    <div class="game-header">
+                        <div class="game-icon" aria-hidden="true">🎯</div>
+                        <div>
+                            <h3>Valorant</h3>
+                            <small>بطاقات متاحة</small>
                         </div>
-                        <ul class="game-options">
-                            <li><span>420 VP</span><strong>$ 5</strong></li>
-                            <li><span>1375 VP</span><strong>$ 15</strong></li>
-                            <li><span>4200 VP</span><strong>$ 42</strong></li>
-                        </ul>
-                        <button type="button">طلب الآن</button>
-                    </article>
+                    </div>
+                    <ul class="game-options">
+                        <li><span>420 VP</span><strong>$ 5</strong></li>
+                        <li><span>1375 VP</span><strong>$ 15</strong></li>
+                        <li><span>4200 VP</span><strong>$ 42</strong></li>
+                    </ul>
+                    <button type="button">طلب الآن</button>
+                </article>
+            </div>
 
-                    <article class="game-card" data-name="steam هدايا بطاقات ألعاب">
-                        <div class="game-header">
-                            <div class="game-icon" aria-hidden="true">🛒</div>
-                            <div>
-                                <h3>Steam Wallet</h3>
-                                <small>هدية فورية</small>
-                            </div>
-                        </div>
-                        <ul class="game-options">
-                            <li><span>$10</span><strong>$ 10</strong></li>
-                            <li><span>$25</span><strong>$ 25</strong></li>
-                            <li><span>$50</span><strong>$ 50</strong></li>
-                        </ul>
-                        <button type="button">طلب الآن</button>
-                    </article>
-
-                    <article class="game-card" data-name="playstation xbox شحن بطاقات">
-                        <div class="game-header">
-                            <div class="game-icon" aria-hidden="true">🕹️</div>
-                            <div>
-                                <h3>PlayStation / Xbox</h3>
-                                <small>بطاقات ألعاب</small>
-                            </div>
-                        </div>
-                        <ul class="game-options">
-                            <li><span>PSN 10$</span><strong>$ 10</strong></li>
-                            <li><span>PSN 20$</span><strong>$ 20</strong></li>
-                            <li><span>XBOX 25$</span><strong>$ 25</strong></li>
-                        </ul>
-                        <button type="button">طلب الآن</button>
-                    </article>
-                </div>
-
-                <div class="quick-actions">
-                    <button type="button">🔥 الأكثر طلباً</button>
-                    <button type="button">⚡ عروض اليوم</button>
-                    <button type="button">🛡️ خدمات موثوقة</button>
-                    <button type="button">💬 دعم سريع</button>
-                </div>
-            </section>
+            <div class="quick-actions">
+                <button type="button">🔥 الأكثر طلباً</button>
+                <button type="button">⚡ عروض اليوم</button>
+                <button type="button">🛡️ خدمات موثوقة</button>
+                <button type="button">💬 دعم سريع</button>
+            </div>
         </main>
 
         <nav class="bottom-nav" aria-label="التنقل السفلي">
@@ -867,17 +813,22 @@
             <button class="nav-icon" type="button">⚙<span>الإعدادات</span></button>
         </nav>
     </div>
+
     <script>
         const search = document.querySelector('#search');
         const items = [...document.querySelectorAll('.store-item, .game-card')];
+
         search.addEventListener('input', () => {
             const query = search.value.trim().toLowerCase();
             items.forEach(item => {
-                const itemName = (item.dataset.name || '').toLowerCase();
-                item.hidden = query && !itemName.includes(query);
+                const name = (item.dataset.name || '').toLowerCase();
+                item.hidden = query && !name.includes(query);
             });
         });
-        document.querySelectorAll('.store-item, .game-card button').forEach(item => item.addEventListener('click', event => event.preventDefault()));
+
+        document.querySelectorAll('.store-item, .game-card button').forEach(item => {
+            item.addEventListener('click', event => event.preventDefault());
+        });
     </script>
 </body>
 </html>
