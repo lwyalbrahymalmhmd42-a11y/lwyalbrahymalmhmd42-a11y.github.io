@@ -1,1 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameHub | متجر الألعاب</title>
+    <meta
+      name="description"
+      content="متجر ألعاب احترافي مع أفضل العناوين والخصومات."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <div class="logo">G</div>
+          <span>GameHub</span>
+        </div>
 
+        <nav class="main-nav">
+          <a href="#home">الرئيسية</a>
+          <a href="#store">المتجر</a>
+          <a href="#deals">العروض</a>
+          <a href="#about">حولنا</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="icon-btn" aria-label="بحث">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button class="icon-btn cart-toggle" aria-label="سلة المشتريات">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-content">
+          <div class="hero-copy">
+            <span class="eyebrow">أفضل الألعاب الحديثة</span>
+            <h1>اكتشف عالم الألعاب التالي</h1>
+            <p>
+              استمتع بأحدث العناوين، اللعب متعدد المنصات، والخصومات الحصرية في
+              متجر GameHub الاحترافي.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#store" class="btn btn-primary">تسوق الآن</a>
+              <a href="#deals" class="btn btn-secondary">استعرض العروض</a>
+            </div>
+
+            <div class="stats">
+              <div>
+                <strong>120K+</strong>
+                <span>مستخدم</span>
+              </div>
+              <div>
+                <strong>2.5K</strong>
+                <span>لعبة</span>
+              </div>
+              <div>
+                <strong>4.9/5</strong>
+                <span>تقييم</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="game-card showcase">
+              <div class="badge">الأكثر مبيعًا</div>
+              <img
+                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80"
+                alt="لعبة"
+              />
+              <div class="showcase-bottom">
+                <div>
+                  <p>Cyber Drift</p>
+                  <span>التصويب / السباق</span>
+                </div>
+                <strong>119.99 ر.س</strong>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <span>خصم 30%</span>
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="brands container">
+        <span>الشركاء</span>
+        <div>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/2/26/PlayStation_logo.svg"
+            alt="PlayStation"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Xbox_logo_2012.svg"
+            alt="Xbox"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Steam_logo.svg"
+            alt="Steam"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Nintendo.svg"
+            alt="Nintendo"
+          />
+        </div>
+      </section>
+
+      <section class="store container" id="store">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">المتجر</span>
+            <h2>أفضل العناوين الحالية</h2>
+          </div>
+          <div class="toolbar">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="ابحث عن لعبة..."
+              aria-label="بحث عن لعبة"
+            />
+            <select id="sortSelect" aria-label="ترتيب">
+              <option value="popular">الأكثر شعبية</option>
+              <option value="low">السعر: من الأقل إلى الأعلى</option>
+              <option value="high">السعر: من الأعلى إلى الأقل</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="category-filters" id="categoryFilters">
+          <button class="filter-btn active" data-category="الكل">الكل</button>
+          <button class="filter-btn" data-category="إطلاق">إطلاق</button>
+          <button class="filter-btn" data-category="مغامرة">مغامرة</button>
+          <button class="filter-btn" data-category="سباق">سباق</button>
+          <button class="filter-btn" data-category="إستراتيجية">إستراتيجية</button>
+          <button class="filter-btn" data-category="أكشن">أكشن</button>
+          <button class="filter-btn" data-category="رياضة">رياضة</button>
+        </div>
+
+        <div class="games-grid" id="gameGrid"></div>
+      </section>
+
+      <section class="deals container" id="deals">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">عروض خاصة</span>
+            <h2>خصومات هذا الأسبوع</h2>
+          </div>
+        </div>
+
+        <div class="deal-grid">
+          <div class="deal-card deal-large">
+            <div class="deal-content">
+              <span>خصم 40%</span>
+              <h3>بداية جديدة في عالم الفضاء</h3>
+              <p>استمتع بأحدث ألعاب الخيال العلمي بأسعار مناسبة.</p>
+              <button class="btn btn-primary">احصل على العرض</button>
+            </div>
+          </div>
+
+          <div class="deal-card deal-small">
+            <div class="deal-content">
+              <span>خصم 25%</span>
+              <h3>الألعاب المختارة</h3>
+              <p>مكتبة مختارة من أبرز العناوين.</p>
+            </div>
+          </div>
+
+          <div class="deal-card deal-small alt">
+            <div class="deal-content">
+              <span>عضوية VIP</span>
+              <h3>خصومات حصرية</h3>
+              <p>لأعضاء اللعبة المميزة.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about container" id="about">
+        <div class="about-box">
+          <div class="about-text">
+            <span class="eyebrow">لماذا GameHub؟</span>
+            <h2>متجر ألعاب مصمم لتجربة شراء احترافية</h2>
+            <p>
+              نقدم لك أفضل الألعاب، خصومات يومية، مراجعات موثوقة، ودعم فني
+              سريع. كل هذا في منصة سهلة الاستخدام ومصممة خصيصًا لمحبي الألعاب.
+            </p>
+          </div>
+          <ul class="features">
+            <li><i class="fa-solid fa-shield-halved"></i> دفع آمن</li>
+            <li><i class="fa-solid fa-truck-fast"></i> توصيل فوري</li>
+            <li><i class="fa-solid fa-headset"></i> دعم متواصل</li>
+            <li><i class="fa-solid fa-gamepad"></i> مكتبة واسعة</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel">
+      <div class="cart-header">
+        <h3>سلة المشتريات</h3>
+        <button id="closeCart" class="close-btn" aria-label="إغلاق السلة">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="cartItems" class="cart-items">
+        <p class="empty-cart">السلة فارغة حاليًا.</p>
+      </div>
+
+      <div class="cart-footer">
+        <div class="subtotal">
+          <span>المجموع</span>
+          <strong id="subtotalValue">0 ر.س</strong>
+        </div>
+        <button class="btn btn-primary checkout-btn">إتمام الشراء</button>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
