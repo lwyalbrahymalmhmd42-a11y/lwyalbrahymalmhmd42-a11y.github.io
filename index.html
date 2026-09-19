@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الهاشمي | شحن الألعاب والتطبيقات</title>
-    <meta name="description" content="الهاشمي لشحن الألعاب والتطبيقات والدفع عبر شام كاش. رقم التواصل: 0983311260" />
+    <title>الهاشمي | متجر الشحن</title>
+    <meta name="description" content="متجر شحن الألعاب والتطبيقات والدفع عبر شام كاش" />
     <style>
         :root {
-            --bg: #0a1020;
-            --bg-alt: #101a2f;
-            --card: rgba(255,255,255,0.07);
-            --primary: #ff5be8;
-            --primary-2: #45d7ff;
-            --accent: #ffd166;
-            --text: #f8fafc;
-            --muted: #ced9ea;
-            --border: rgba(255,255,255,0.12);
-            --shadow: 0 18px 40px rgba(0,0,0,0.35);
+            --primary: #0f2b5c;
+            --primary-2: #0b1738;
+            --blue: #153a77;
+            --blue-soft: #1f4ca6;
+            --card: #0d1f45;
+            --card-2: #0a1733;
+            --gold: #f7c75b;
+            --text: #0f172a;
+            --muted: #49576b;
+            --white: #ffffff;
+            --shadow: 0 14px 28px rgba(10, 20, 40, 0.18);
+            --nav-gray: #edf1f7;
+            --bottom-bar: #f7f7f8;
         }
 
         * { box-sizing: border-box; }
@@ -24,618 +27,451 @@
         body {
             margin: 0;
             font-family: Arial, Tahoma, sans-serif;
-            background: radial-gradient(circle at center, rgba(121, 70, 255, 0.25), transparent 25%),
-                linear-gradient(135deg, #091420 0%, #10182d 35%, #110b20 100%);
+            background: #dfe7f7;
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.5;
         }
         a { text-decoration: none; color: inherit; }
         .container { width: min(1180px, calc(100% - 30px)); margin: 0 auto; }
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(10, 16, 32, 0.75);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+
+        .app-shell {
+            width: min(100%, 500px);
+            min-height: 100vh;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #eef3ff 0%, #edf1f7 100%);
+            box-shadow: 0 10px 40px rgba(18, 28, 50, 0.12);
+            position: relative;
+            padding-bottom: 92px;
         }
-        .nav {
+
+        .topbar {
+            background: linear-gradient(180deg, #eaf0ff 0%, #dfeafc 100%);
+            border-bottom: 1px solid rgba(15, 43, 92, 0.08);
+            padding: 10px 18px 16px;
+        }
+        .status-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
-            gap: 20px;
+            justify-content: space-between;
+            color: #0a1e44;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .status-left, .status-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .signal {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 18px;
+        }
+        .status-right { gap: 10px; }
+        .battery {
+            width: 27px;
+            height: 14px;
+            border-radius: 4px;
+            border: 2px solid #0b1e4a;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, #1d315f 0 65%, #11274d 65% 100%);
+        }
+        .battery::after {
+            content: "";
+            position: absolute;
+            right: -4px;
+            top: 3px;
+            width: 3px;
+            height: 6px;
+            border-radius: 2px;
+            background: #0b1e4a;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 4px;
         }
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            font-size: 1.15rem;
+            gap: 10px;
+            color: #0d2a5d;
         }
         .brand-mark {
-            width: 46px;
-            height: 46px;
-            border-radius: 14px;
+            width: 52px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0e2d6a, #0a244d);
             display: grid;
             place-items: center;
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
-            color: #0f172a;
+            color: #fff;
             font-weight: 900;
-            box-shadow: var(--shadow);
+            font-size: 1.65rem;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);
+            position: relative;
         }
-        .nav-links {
+        .brand-mark::before {
+            content: "5";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-size: 1.7rem;
+            color: #fff;
+        }
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+        .brand-name small {
+            display: block;
+            font-size: 0.62rem;
+            letter-spacing: 0.09em;
+            opacity: 0.8;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+        .header-actions {
             display: flex;
             align-items: center;
-            gap: 18px;
-            color: var(--muted);
-            font-size: 0.96rem;
+            gap: 12px;
         }
-        .btn {
+        .badge {
+            position: relative;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #f5f5f5, #e7ebf1);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+            display: grid;
+            place-items: center;
+            color: #0d2d68;
+            font-size: 1.1rem;
+        }
+        .badge-alert {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff584d, #f23d3d);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 900;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 6px 12px rgba(242, 61, 61, 0.3);
+        }
+        .vip-tag {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 14px 24px;
-            border-radius: 14px;
-            font-weight: 800;
-            transition: 0.2s ease;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
-            color: #0b1020;
-            box-shadow: var(--shadow);
-        }
-        .btn-primary:hover { transform: translateY(-2px); }
-        .btn-secondary {
-            background: transparent;
-            border-color: var(--border);
-            color: var(--text);
-        }
-
-        .hero {
-            padding: 54px 0 30px;
-        }
-        .hero-wrap {
-            display: grid;
-            grid-template-columns: 1.12fr 0.88fr;
-            gap: 34px;
-            align-items: center;
-        }
-        .eyebrow {
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(255, 94, 214, 0.1);
-            border: 1px solid rgba(255, 94, 214, 0.3);
-            color: #ffc8f7;
-            font-size: 0.8rem;
-            margin-bottom: 18px;
-        }
-        h1 {
-            margin: 0 0 16px;
-            font-size: clamp(2.4rem, 4vw, 4.5rem);
-            line-height: 1.1;
-        }
-        .lead {
-            color: var(--muted);
-            font-size: 1.08rem;
-            max-width: 620px;
-            margin-bottom: 24px;
-        }
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-bottom: 28px;
-        }
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-        .stat {
-            min-width: 140px;
-            padding: 14px 18px;
+            gap: 6px;
+            background: linear-gradient(135deg, #0d1d40, #122e64);
+            color: #fff;
             border-radius: 16px;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,0.05);
+            padding: 8px 14px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
         }
-        .stat strong {
-            display: block;
-            font-size: 1.25rem;
-            margin-bottom: 4px;
+        .vip-tag .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ffd266;
+            box-shadow: 0 0 0 3px rgba(255, 210, 102, 0.2);
+        }
+        .balance-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.66);
+            border: 1px solid rgba(9, 24, 47, 0.08);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .balance-box .coin {
+            font-size: 1.15rem;
+        }
+        .menu {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.65);
+            display: grid;
+            place-items: center;
+            color: #0f2b5c;
+            font-size: 1.5rem;
         }
 
-        .banner-shell {
-            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-            border: 1px solid var(--border);
-            border-radius: 26px;
-            box-shadow: var(--shadow);
-            padding: 18px;
-            position: relative;
-            overflow: hidden;
+        .store-wrap {
+            padding: 18px 14px 0;
         }
-        .banner-shell::before {
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px 14px;
+        }
+        .store-item {
+            text-align: center;
+            color: #0b1734;
+        }
+        .store-thumb {
+            position: relative;
+            height: 118px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d1b3d, #163b7e 40%, #10295d 100%);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.16);
+            display: grid;
+            place-items: center;
+        }
+        .store-thumb::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(140deg, rgba(255,100,214,0.12), transparent 35%, rgba(69,215,255,0.1));
-            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1), transparent 30%, rgba(0,0,0,0.16));
         }
-        .banner-card {
-            position: relative;
-            border-radius: 24px;
-            padding: 20px 16px 14px;
-            border: 3px solid #ff79f5;
-            background: linear-gradient(180deg, rgba(14,18,30,0.96), rgba(6,10,20,0.96));
-            box-shadow: 0 0 26px rgba(255, 92, 233, 0.28);
-        }
-        .banner-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-weight: 900;
-            font-size: clamp(2rem, 3vw, 3.2rem);
-            color: #f9f3ff;
-            text-shadow: 0 0 20px rgba(255, 94, 214, 0.6);
-            padding: 6px 8px 18px;
-        }
-        .banner-logo {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
-            color: #111827;
-            font-size: 1.7rem;
-            font-weight: 900;
-        }
-        .banner-sub {
-            text-align: center;
-            font-size: clamp(1.2rem, 2vw, 2rem);
-            letter-spacing: 0.5px;
-            color: #7fe9ff;
-            font-weight: 800;
-            margin-bottom: 26px;
-        }
-        .banner-game {
-            display: grid;
-            place-items: center;
-            min-height: 280px;
-            border-radius: 18px;
-            background: radial-gradient(circle at center, rgba(93, 180, 255, 0.2), rgba(25, 28, 46, 0.9) 30%, rgba(12,16,26,1));
-            border: 1px solid rgba(69,215,255,0.25);
-            position: relative;
-            overflow: hidden;
-        }
-        .banner-game::before,
-        .banner-game::after {
+        .store-thumb::after {
             content: "";
             position: absolute;
-            inset: 18% 20%;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(69,215,255,0.8), rgba(69,215,255,0.1) 40%, transparent 62%);
-            filter: blur(8px);
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(80, 162, 255, 0.25), transparent 50%);
         }
-        .banner-game::after {
-            inset: 22% 28%;
-            border: 3px solid rgba(255,255,255,0.5);
-            background: transparent;
-            box-shadow: 0 0 40px rgba(69,215,255,0.45);
-        }
-        .demo-character {
+        .store-item:nth-child(2n) .store-thumb { background: linear-gradient(135deg, #0a1d45, #123b7c 28%, #0a2b70 100%); }
+        .store-item:nth-child(3n) .store-thumb { background: linear-gradient(135deg, #0b1f4d, #113f8e 26%, #0a2b5c 100%); }
+        .store-logo {
             position: relative;
             z-index: 1;
-            width: 180px;
-            height: 220px;
-            border-radius: 40% 40% 10% 10%;
-            background: linear-gradient(180deg, #f2f4ff, #b9c6ff 20%, #a8c0ff 60%, #2f3d67 100%);
-            box-shadow: inset 0 0 0 12px rgba(23, 31, 53, 0.8), 0 0 40px rgba(123, 212, 255, 0.4);
-        }
-        .demo-character::before {
-            content: "";
-            position: absolute;
-            width: 58%;
-            height: 58%;
-            left: 21%;
-            top: 12%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 32% 30%, #d6e4ff, #6d7ca7 45%, #1d243d 90%);
-            border: 8px solid rgba(18, 29, 49, 0.9);
-        }
-        .demo-character::after {
-            content: "";
-            position: absolute;
-            width: 65%;
-            height: 52%;
-            left: 18%;
-            bottom: 0;
-            border-radius: 24px 24px 14px 14px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(188, 198, 255, 0.75));
-        }
-        .contact-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: 20px;
-            padding: 10px 18px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(255, 94, 214, 0.16), rgba(69, 215, 255, 0.12));
-            border: 2px solid rgba(255,255,255,0.15);
-            color: #fef3ff;
-            font-weight: 800;
-            text-align: center;
-        }
-        .phone {
-            direction: ltr;
-            font-size: clamp(1.8rem, 3vw, 3rem);
-            color: #fff;
-            letter-spacing: 0.08em;
-        }
-
-        .topups {
-            padding-top: 20px;
-        }
-        .topup-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 20px;
-        }
-        .topup-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 22px 18px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        .topup-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(69,215,255,0.5);
-        }
-        .topup-card h3 {
-            margin: 0 0 10px;
-            font-size: 1.25rem;
-        }
-        .topup-price {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #7fe9ff;
-            margin: 8px 0 14px;
-        }
-        .topup-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
-        }
-        .topup-badges span {
-            display: inline-flex;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: rgba(255,94,214,0.1);
-            border: 1px solid rgba(255,94,214,0.2);
-            color: #ffc8f7;
-            font-size: 0.74rem;
-        }
-
-        .cta {
-            text-align: center;
-            background: linear-gradient(135deg, rgba(255,94,214,0.12), rgba(9,20,32,0.8));
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 28px 20px;
-            margin-top: 20px;
-        }
-        .cta h3 {
-            margin: 0 0 8px;
-            font-size: clamp(1.7rem, 3vw, 2.4rem);
-        }
-        .cta p { color: var(--muted); margin: 0 0 18px; }
-        .tel {
-            display: inline-block;
-            margin: 8px 0 18px;
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: #7fe9ff;
-            direction: ltr;
-        }
-
-        section { padding: 42px 0; }
-        .section-head { text-align: center; margin-bottom: 26px; }
-        .section-head h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 3vw, 2.8rem); }
-        .section-head p { margin: 0; color: var(--muted); }
-        .services, .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-        .service-card, .step {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-        }
-        .icon {
-            width: 58px;
-            height: 58px;
-            display: grid;
-            place-items: center;
+            width: 60px;
+            height: 60px;
             border-radius: 16px;
-            font-size: 1.5rem;
-            margin-bottom: 18px;
-            background: linear-gradient(135deg, rgba(255,94,214,0.14), rgba(69,215,255,0.14));
-            border: 1px solid rgba(255,255,255,0.14);
-        }
-        .service-card h3, .step h3 { margin: 0 0 10px; font-size: 1.35rem; }
-        .service-card p, .step p { margin: 0; color: var(--muted); }
-        .number {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
             display: grid;
             place-items: center;
+            font-weight: 900;
+            color: #fff;
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            font-size: 1.7rem;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+        .store-logo.gaming { background: linear-gradient(135deg, #ff5bc6, #ffaf3d); }
+        .store-logo.app { background: linear-gradient(135deg, #7bd6ff, #4c87ff); }
+        .store-logo.card { background: linear-gradient(135deg, #7dffdb, #2bcf9d); }
+        .store-logo.media { background: linear-gradient(135deg, #ff7da1, #ff4ea8); }
+        .store-logo.social { background: linear-gradient(135deg, #7de0ff, #2bb0ff); }
+        .store-logo.account { background: linear-gradient(135deg, #79c3ff, #56c5ff); }
+        .store-logo.soft { background: linear-gradient(135deg, #3cd6f0, #142f7b); }
+        .store-logo.premium { background: linear-gradient(135deg, #a5ed86, #2dcf74); }
+        .store-logo.tv { background: linear-gradient(135deg, #f7d15a, #f28b2c); }
+        .store-logo.design { background: linear-gradient(135deg, #b7d5ff, #5c86ff); }
+        .store-logo.numbers { background: linear-gradient(135deg, #ffda98, #ff9b48); }
+        .store-logo.vpn { background: linear-gradient(135deg, #5fd4ff, #56ce8a); }
+
+        .store-label {
+            margin-top: 10px;
+            font-size: 1.1rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
-            color: #0f172a;
-            margin-bottom: 14px;
+            line-height: 1.35;
+            color: #111827;
+            word-break: break-word;
         }
 
-        footer {
-            padding: 28px 0 44px;
-            color: var(--muted);
-            text-align: center;
+        .bottom-nav {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: min(100%, 500px);
+            background: rgba(247,247,248,0.94);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(10,20,40,0.08);
+            padding: 12px 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -10px 24px rgba(8, 14, 28, 0.08);
+            z-index: 20;
         }
+        .nav-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: #94a3b8;
+            font-size: 1.9rem;
+            background: transparent;
+        }
+        .nav-icon.active {
+            background: linear-gradient(135deg, rgba(13, 70, 167, 0.15), rgba(13, 70, 167, 0.06));
+            color: #0d2d68;
+            box-shadow: inset 0 0 0 1px rgba(13, 70, 167, 0.12);
+            position: relative;
+        }
+        .nav-icon.active::before {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.8);
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 10px 18px rgba(18, 36, 72, 0.08);
+        }
+        .nav-icon.home { font-size: 2rem; }
+        .nav-icon.cart { font-size: 1.8rem; }
 
-        @media (max-width: 900px) {
-            .hero-wrap, .services, .steps, .topup-grid { grid-template-columns: 1fr; }
-            .nav { flex-direction: column; }
-            .nav-links { flex-wrap: wrap; justify-content: center; }
+        @media (max-width: 470px) {
+            .app-shell { width: 100%; }
+            .store-grid { gap: 14px 10px; }
+            .store-thumb { height: 105px; }
+            .store-label { font-size: 0.95rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container nav">
-            <div class="brand">
-                <div class="brand-mark">هـ</div>
-                <span>الهاشمي للشحن</span>
-            </div>
-            <nav class="nav-links" aria-label="التنقل الرئيسي">
-                <a href="#topups">خيارات الشحن</a>
-                <a href="#services">الخدمات</a>
-                <a href="#steps">طريقة الطلب</a>
-                <a href="#contact">تواصل</a>
-                <a href="#order" class="btn btn-primary">اطلب الآن</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container hero-wrap">
-                <div>
-                    <span class="eyebrow">خدمة سريعة وآمنة</span>
-                    <h1>الهاشمي للدفع وشحن الألعاب والتطبيقات</h1>
-                    <p class="lead">
-                        نقدم لك شحن الألعاب، شراء التطبيقات، والاشتراكات بسرعة، مع الدفع عبر شام كاش
-                        والخدمة السريعة والموثوقة في كل طلب.
-                    </p>
-                    <div class="actions">
-                        <a href="#order" class="btn btn-primary">اطلب الآن</a>
-                        <a href="#topups" class="btn btn-secondary">خيارات الشحن</a>
-                    </div>
-
-                    <div class="stats">
-                        <div class="stat"><strong>24/7</strong><span>خدمة مستمرة</span></div>
-                        <div class="stat"><strong>شام كاش</strong><span>طريقة الدفع</span></div>
-                        <div class="stat"><strong>0983311260</strong><span>رقم التواصل</span></div>
-                    </div>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="status-row">
+                <div class="status-left">
+                    <span class="signal">◔</span>
+                    <span>4G</span>
                 </div>
-
-                <div class="banner-shell" aria-label="شحن الألعاب والتطبيقات">
-                    <div class="banner-card">
-                        <div class="banner-title"><span class="banner-logo">هـ</span> <span>الهاشمي</span></div>
-                        <div class="banner-sub">DIGITAL GAMES TOP-UP</div>
-                        <div class="banner-game">
-                            <div class="demo-character"></div>
-                        </div>
-                        <div class="contact-box">
-                            <span>📞</span>
-                            <span class="phone">0983311260</span>
-                        </div>
-                    </div>
+                <div class="status-right">
+                    <span>3:04</span>
+                    <span class="battery" aria-label="battery"></span>
                 </div>
             </div>
-        </section>
 
-        <section id="topups" class="topups">
-            <div class="container">
-                <div class="section-head">
-                    <h2>خيارات الشحن</h2>
-                    <p>أفضل باقات الشحن والاشتراكات المتاحة الآن</p>
+            <div class="brand-row">
+                <div class="brand" aria-label="الهاشمي">
+                    <div class="brand-mark" aria-hidden="true"></div>
+                    <div class="brand-name">Tartous<small>market</small></div>
                 </div>
 
-                <div class="topup-grid">
-                    <article class="topup-card">
-                        <h3>PUBG Mobile</h3>
-                        <div class="topup-price">60 ر.س</div>
-                        <p>شحن سريع مع دعم الحساب ومدة تنفيذ قصيرة.</p>
-                        <div class="topup-badges">
-                            <span>سريع</span>
-                            <span>موثوق</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>Free Fire</h3>
-                        <div class="topup-price">120 ر.س</div>
-                        <p>اختيارات متعددة حسب احتياجك وطلبك اليومي.</p>
-                        <div class="topup-badges">
-                            <span>مناسب</span>
-                            <span>دايم</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>Fortnite</h3>
-                        <div class="topup-price">200 ر.س</div>
-                        <p>خدمة آمنة مع تأكيد فوري بعد تجهيز الطلب.</p>
-                        <div class="topup-badges">
-                            <span>فوري</span>
-                            <span>أمان</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>Roblox</h3>
-                        <div class="topup-price">300 ر.س</div>
-                        <p>أفضل العروض للبطاقات والاشتراكات الرقمية.</p>
-                        <div class="topup-badges">
-                            <span>تجهيز</span>
-                            <span>مميز</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>شحن 60</h3>
-                        <div class="topup-price">60 ر.س</div>
-                        <p>عرض مخصص للطلبات السريعة مع تجهيز سريع.</p>
-                        <div class="topup-badges">
-                            <span>سريع</span>
-                            <span>مناسب</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>شحن 660</h3>
-                        <div class="topup-price">660 ر.س</div>
-                        <p>خدمة مناسبة للطلبات المتوسطة مع دعم ممتاز.</p>
-                        <div class="topup-badges">
-                            <span>متوسط</span>
-                            <span>موثوق</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>شحن 325</h3>
-                        <div class="topup-price">325 ر.س</div>
-                        <p>خيار عملي ومميز للطلبات الصغيرة والمتوسطة.</p>
-                        <div class="topup-badges">
-                            <span>عملي</span>
-                            <span>مريح</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>شحن 1800</h3>
-                        <div class="topup-price">1800 ر.س</div>
-                        <p>خدمة مناسبة للطلبات الكبيرة مع معالجة موثوقة.</p>
-                        <div class="topup-badges">
-                            <span>كبيرة</span>
-                            <span>فورية</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>شحن 3850</h3>
-                        <div class="topup-price">3850 ر.س</div>
-                        <p>عرض متقدم للطلبات الكبيرة مع سرعة تنفيذ عالية.</p>
-                        <div class="topup-badges">
-                            <span>مميز</span>
-                            <span>سريع</span>
-                        </div>
-                    </article>
-
-                    <article class="topup-card">
-                        <h3>شحن 8100</h3>
-                        <div class="topup-price">8100 ر.س</div>
-                        <p>أفضل خيار للطلبات الضخمة مع دعم خاص وسرعة تنفيذ.</p>
-                        <div class="topup-badges">
-                            <span>ضخم</span>
-                            <span>دعم</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="services">
-            <div class="container">
-                <div class="section-head">
-                    <h2>خدماتنا</h2>
-                    <p>كل ما تحتاجه في مكان واحد</p>
-                </div>
-
-                <div class="services">
-                    <article class="service-card">
-                        <div class="icon">🎮</div>
-                        <h3>شحن الألعاب</h3>
-                        <p>شحن PUBG Mobile وFree Fire وFortnite وCall of Duty وRoblox وغيرهم.</p>
-                    </article>
-
-                    <article class="service-card">
-                        <div class="icon">📱</div>
-                        <h3>تطبيقات واشتراكات</h3>
-                        <p>شراء التطبيقات، بطاقات الألعاب، والاشتراكات الرقمية بمواصفات موثوقة.</p>
-                    </article>
-
-                    <article class="service-card">
-                        <div class="icon">💳</div>
-                        <h3>الدفع عبر شام كاش</h3>
-                        <p>تسديد المبلغ بسهولة عبر شام كاش مع تأكيد سريع للطلب.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="steps">
-            <div class="container">
-                <div class="section-head">
-                    <h2>طريقة الطلب</h2>
-                    <p>سهلة، سريعة، بدون تعقيد</p>
-                </div>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="number">1</div>
-                        <h3>اختر الخدمة</h3>
-                        <p>حدد نوع الشحن أو التطبيق المناسب لك من القائمة.</p>
+                <div class="header-actions">
+                    <div class="badge" aria-label="الإشعارات">
+                        🔔
+                        <span class="badge-alert">48</span>
                     </div>
-
-                    <div class="step">
-                        <div class="number">2</div>
-                        <h3>أرسل التفاصيل</h3>
-                        <p>اذكر قيمة الشحن أو رقم الهاتف أو بيانات الطلب المطلوبة.</p>
-                    </div>
-
-                    <div class="step">
-                        <div class="number">3</div>
-                        <h3>استلم الطلب</h3>
-                        <p>سنقوم بمعالجة الطلب سريعًا وتأكيد التنفيذ مباشرة بعد الدفع.</p>
-                    </div>
+                    <div class="vip-tag"><span class="dot"></span> VIP1</div>
+                    <div class="balance-box"><span class="coin">$</span> 0.021</div>
+                    <div class="menu" aria-label="القائمة">☰</div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <section id="order">
-            <div class="container">
-                <div class="cta">
-                    <h3>جاهز للطلب الآن؟</h3>
-                    <p>تواصل معنا الآن للحصول على خدمة شحن الألعاب والتطبيقات والدفع عبر شام كاش.</p>
-                    <div class="tel">0983311260</div><br />
-                    <a href="https://wa.me/963983311260" class="btn btn-primary" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب</a>
+        <main class="store-wrap">
+            <div class="store-grid">
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo gaming">💳</div>
+                    </div>
+                    <div class="store-label">الرصيد<br />والعمولات</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo app">📱</div>
+                    </div>
+                    <div class="store-label">التطبيقات</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo gaming">🎮</div>
+                    </div>
+                    <div class="store-label">الألعاب</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo card">💸</div>
+                    </div>
+                    <div class="store-label">البطاقات</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo social">📣</div>
+                    </div>
+                    <div class="store-label">السوشيال<br />ميديا</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo account">👤</div>
+                    </div>
+                    <div class="store-label">حسابات<br />جاهزة</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo soft">🧩</div>
+                    </div>
+                    <div class="store-label">برامج</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo premium">✅</div>
+                    </div>
+                    <div class="store-label">تفعيل<br />الحسابات</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo tv">📺</div>
+                    </div>
+                    <div class="store-label">اشتراكات<br />الشاشة</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo design">🖌️</div>
+                    </div>
+                    <div class="store-label">تطبيقات<br />تصميم</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo numbers">☎️</div>
+                    </div>
+                    <div class="store-label">أرقام</div>
+                </div>
+
+                <div class="store-item">
+                    <div class="store-thumb">
+                        <div class="store-logo vpn">🔒</div>
+                    </div>
+                    <div class="store-label">VPN</div>
                 </div>
             </div>
-        </section>
-    </main>
+        </main>
 
-    <footer id="contact">
-        <div class="container">
-            © 2026 جميع الحقوق محفوظة | الهاشمي للشحن
-        </div>
-    </footer>
+        <nav class="bottom-nav" aria-label="التنقل السفلي">
+            <div class="nav-icon home active">⌂</div>
+            <div class="nav-icon">◫</div>
+            <div class="nav-icon">◍</div>
+            <div class="nav-icon cart">🛒</div>
+        </nav>
+    </div>
 </body>
 </html>
