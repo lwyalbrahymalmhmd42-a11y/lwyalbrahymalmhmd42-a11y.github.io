@@ -59,13 +59,13 @@
         .battery::after { content: ""; position: absolute; inset: 3px -5px auto auto; width: 3px; height: 5px; border-radius: 1px; background: #d9e8ff; }
         .brand-row { justify-content: space-between; gap: 12px; }
         .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
-        .brand-mark { width: 50px; height: 50px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 16px; color: #09204a; background: linear-gradient(135deg, #ffe18a, #f3ad38); font-size: 1.6rem; font-weight: 900; box-shadow: inset 0 0 0 3px rgba(255,255,255,.3); }
+        .brand-mark { width: 50px; height: 50px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 16px; color: #09204a; background: linear-gradient(135deg, #ffe18a, #f3ad38); font-size: 1.45rem; font-weight: 900; box-shadow: inset 0 2px 8px rgba(255,255,255,.35), 0 8px 18px rgba(13, 37, 92, .18); }
         .brand-name { font-size: 1.28rem; font-weight: 900; line-height: 1.1; white-space: nowrap; }
         .brand-name small { display: block; margin-top: 4px; color: #b9d2ff; font-size: .65rem; letter-spacing: .12em; font-weight: 700; }
         .header-actions { display: flex; align-items: center; gap: 7px; }
         .icon-button, .menu-button { position: relative; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.18); border-radius: 12px; color: #fff; background: rgba(255,255,255,.12); display: grid; place-items: center; font-size: 1.1rem; }
-        .notification-count { position: absolute; top: -7px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; display: grid; place-items: center; border-radius: 99px; color: #fff; background: #fb4d5d; border: 2px solid var(--navy); font-size: .58rem; font-weight: 900; }
-        .vip-tag { display: inline-flex; align-items: center; gap: 5px; padding: 7px 9px; border-radius: 12px; color: #fff5bd; background: rgba(255,255,255,.12); font-size: .72rem; font-weight: 800; white-space: nowrap; }
+        .notification-count { position: absolute; top: -7px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; display: grid; place-items: center; border-radius: 99px; color: #fff; background: #ff5f6d; font-size: .62rem; font-weight: 900; }
+        .vip-tag { display: inline-flex; align-items: center; gap: 5px; padding: 7px 9px; border-radius: 12px; color: #fff5bd; background: rgba(255,255,255,.12); font-size: .72rem; font-weight: 800; }
         .vip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(247,199,91,.2); }
 
         .hero { margin: 18px 14px 0; padding: 18px; position: relative; overflow: hidden; border-radius: 22px; color: #fff; background: linear-gradient(135deg, #1558b8, #0b2456); box-shadow: var(--shadow); }
@@ -88,69 +88,252 @@
         .section-heading h2 { margin: 0; color: var(--navy); font-size: 1.05rem; }
         .section-heading a { color: var(--blue); font-size: .75rem; font-weight: 800; }
         .store-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-        .store-item { min-width: 0; padding: 8px 6px 11px; border: 1px solid var(--line); border-radius: 17px; text-align: center; background: var(--surface); box-shadow: 0 7px 18px rgba(35, 67, 124, .05); transition: transform .2s, box-shadow .2s; }
+        .store-item { min-width: 0; padding: 8px 6px 11px; border: 1px solid var(--line); border-radius: 17px; text-align: center; background: var(--surface); box-shadow: 0 7px 18px rgba(35, 67, 124, .05); display: block; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
         .store-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
         .store-item:focus-within { outline: 3px solid rgba(25,103,210,.25); }
         .store-thumb { height: 88px; display: grid; place-items: center; border-radius: 13px; overflow: hidden; background: linear-gradient(135deg, #0c2350, #1953a1); }
-        .store-logo { width: 53px; height: 53px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.35); border-radius: 15px; color: #fff; font-size: 1.45rem; box-shadow: 0 8px 16px rgba(0,0,0,.15); }
-        .gaming { background: linear-gradient(135deg, #ff5bc6, #ff9f3d); } .app { background: linear-gradient(135deg, #66d8ff, #4775ef); } .card { background: linear-gradient(135deg, #67e8c0, #159b79); } .social { background: linear-gradient(135deg, #72ddff, #1c99ef); } .account { background: linear-gradient(135deg, #90c9ff, #4a86de); } .soft { background: linear-gradient(135deg, #41d5eb, #273d98); } .premium { background: linear-gradient(135deg, #b4ef81, #27bd70); } .tv { background: linear-gradient(135deg, #f8d25b, #eb7626); } .design { background: linear-gradient(135deg, #b6d6ff, #567af4); } .numbers { background: linear-gradient(135deg, #ffd692, #f4853e); } .vpn { background: linear-gradient(135deg, #64d6ff, #53bf83); }
+        .store-logo { width: 53px; height: 53px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.35); border-radius: 15px; color: #fff; font-size: 1.45rem; box-shadow: 0 8px 16px rgba(11, 33, 76, .18); }
+        .gaming { background: linear-gradient(135deg, #ff5bc6, #ff9f3d); } .app { background: linear-gradient(135deg, #66d8ff, #4775ef); } .card { background: linear-gradient(135deg, #67e8c0, #159b79); } .social { background: linear-gradient(135deg, #ff9a9a, #ff5959); } .account { background: linear-gradient(135deg, #9ed9ff, #4b73db); } .soft { background: linear-gradient(135deg, #f9d976, #f0a92a); } .premium { background: linear-gradient(135deg, #9be3c3, #2cb38a); } .tv { background: linear-gradient(135deg, #b5b6ff, #675ef2); } .design { background: linear-gradient(135deg, #ffc8d6, #f7669c); } .numbers { background: linear-gradient(135deg, #a7f3d0, #059669); } .vpn { background: linear-gradient(135deg, #c7d2fe, #4f46e5); }
         .store-label { display: block; margin-top: 8px; color: var(--ink); font-size: .82rem; font-weight: 800; line-height: 1.35; }
+
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .game-card {
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: var(--surface);
+            box-shadow: 0 10px 22px rgba(35, 67, 124, .05);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .game-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .game-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff7ad9, #ffa94d);
+            font-size: 1.2rem;
+            box-shadow: inset 0 2px 8px rgba(255,255,255,.3);
+        }
+        .game-header h3 {
+            margin: 0;
+            color: var(--navy);
+            font-size: .9rem;
+        }
+        .game-header small {
+            display: block;
+            color: var(--muted);
+            font-size: .62rem;
+            margin-top: 2px;
+        }
+        .game-options {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px;
+            display: grid;
+            gap: 6px;
+        }
+        .game-options li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 7px 8px;
+            border-radius: 10px;
+            background: #f3f7ff;
+            color: var(--navy-2);
+            font-size: .72rem;
+            font-weight: 700;
+        }
+        .game-options strong {
+            color: var(--blue);
+            font-size: .75rem;
+        }
+        .game-card button {
+            width: 100%;
+            border: 0;
+            border-radius: 11px;
+            padding: 9px 10px;
+            background: linear-gradient(135deg, #0d2d68, #1967d2);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 900;
+        }
+
         .quick-actions { gap: 8px; margin-top: 18px; overflow-x: auto; scrollbar-width: none; }
         .quick-actions::-webkit-scrollbar { display: none; }
         .quick-actions button { flex: 0 0 auto; padding: 9px 13px; border: 1px solid var(--line); border-radius: 12px; color: var(--navy-2); background: var(--surface); font-size: .75rem; font-weight: 800; }
         .quick-actions button:first-child { color: #fff; border-color: var(--blue); background: var(--blue); }
 
-        .bottom-nav { position: fixed; left: 50%; bottom: 0; z-index: 20; justify-content: space-around; width: min(100%, 520px); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); transform: translateX(-50%); background: rgba(255,255,255,.94); backdrop-filter: blur(14px); box-shadow: 0 -10px 25px rgba(12, 34, 74, .08); }
+        .bottom-nav { position: fixed; left: 50%; bottom: 0; z-index: 20; justify-content: space-around; width: min(100%, 520px); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(19, 33, 61, .08); background: rgba(255,255,255,.97); backdrop-filter: blur(10px); transform: translateX(-50%); }
         .nav-icon { min-width: 60px; padding: 5px 10px; border: 0; border-radius: 12px; color: #9aa7ba; background: transparent; font-size: 1.35rem; }
         .nav-icon span { display: block; margin-top: 1px; font-size: .62rem; font-weight: 800; }
         .nav-icon.active { color: var(--blue); background: #eaf2ff; }
-        @media (max-width: 390px) { .brand-name { font-size: 1.05rem; } .vip-tag { display: none; } .store-grid { gap: 9px; } .store-item { padding-inline: 4px; } }
+        @media (max-width: 390px) { .brand-name { font-size: 1.05rem; } .vip-tag { display: none; } .store-grid { gap: 9px; } .store-item { padding-inline: 4px; } .game-list { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="app-shell">
         <header class="topbar">
-            <div class="status-row" aria-label="معلومات الجهاز"><div class="status-left"><span class="signal">◔</span><span>4G</span></div><div class="status-right"><span>3:04</span><span class="battery" aria-label="البطارية 72 بالمئة"></span></div></div>
+            <div class="status-row" aria-label="معلومات الجهاز"><div class="status-left"><span class="signal">◔</span><span>4G</span></div><div class="status-right"><span>3:04</span><div class="battery" aria-hidden="true"></div></div></div>
             <div class="brand-row">
                 <div class="brand"><div class="brand-mark" aria-hidden="true">5</div><div class="brand-name">Tartous<small>digital market</small></div></div>
-                <div class="header-actions"><div class="vip-tag"><span class="vip-dot"></span> VIP1</div><button class="icon-button" type="button" aria-label="الإشعارات">🔔<span class="notification-count">4</span></button><button class="menu-button" type="button" aria-label="فتح القائمة">☰</button></div>
+                <div class="header-actions"><div class="vip-tag"><span class="vip-dot"></span> VIP1</div><button class="icon-button" type="button" aria-label="الإشعارات">🔔<span class="notification-count">3</span></button></div>
             </div>
         </header>
 
         <main>
-            <section class="hero" aria-label="عرض المتجر"><div class="hero-content"><span class="hero-kicker">أهلاً بك في تارتوس ماركت</span><h1>كل خدماتك الرقمية<br />بمكان واحد</h1><p>شحن سريع، أسعار منافسة، وخدمة موثوقة على مدار الساعة.</p><button class="hero-button" type="button" onclick="document.querySelector('#categories').scrollIntoView()">تصفح المنتجات</button></div></section>
+            <section class="hero" aria-label="عرض المتجر"><div class="hero-content"><span class="hero-kicker">أهلاً بك في تارتوس ماركت</span><h1>كل خدماتك الرقمية في مكان واحد</h1><p>شحن الألعاب، التطبيقات، الاشتراكات، والهدايا الإلكترونية بأسرع طريقة.</p><button class="hero-button" type="button">تسوق الآن</button></div></section>
             <section class="store-wrap">
-                <div class="balance-card"><div class="balance-line"><div><span class="balance-label">الرصيد الحالي</span><strong class="balance-value">$ 0.021</strong></div><button class="add-balance" type="button">+ شحن الرصيد</button></div></div>
+                <div class="balance-card"><div class="balance-line"><div><span class="balance-label">الرصيد الحالي</span><strong class="balance-value">$ 0.021</strong></div><button class="add-balance" type="button">إضافة رصيد</button></div></div>
                 <label class="search-box" for="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="ابحث عن خدمة أو منتج..." /></label>
                 <div class="section-heading" id="categories"><h2>الأقسام</h2><a href="#categories">عرض الكل</a></div>
                 <div class="store-grid">
-                    <a class="store-item" href="#" data-name="الرصيد والعمولات"><div class="store-thumb"><div class="store-logo gaming">💳</div></div><span class="store-label">الرصيد<br />والعمولات</span></a>
+                    <a class="store-item" href="#" data-name="الرصيد والعمولات"><div class="store-thumb"><div class="store-logo gaming">💳</div></div><span class="store-label">الرصيد والعمولات</span></a>
                     <a class="store-item" href="#" data-name="التطبيقات"><div class="store-thumb"><div class="store-logo app">📱</div></div><span class="store-label">التطبيقات</span></a>
                     <a class="store-item" href="#" data-name="الألعاب"><div class="store-thumb"><div class="store-logo gaming">🎮</div></div><span class="store-label">الألعاب</span></a>
                     <a class="store-item" href="#" data-name="البطاقات"><div class="store-thumb"><div class="store-logo card">💸</div></div><span class="store-label">البطاقات</span></a>
-                    <a class="store-item" href="#" data-name="السوشيال ميديا"><div class="store-thumb"><div class="store-logo social">📣</div></div><span class="store-label">السوشيال<br />ميديا</span></a>
-                    <a class="store-item" href="#" data-name="حسابات جاهزة"><div class="store-thumb"><div class="store-logo account">👤</div></div><span class="store-label">حسابات<br />جاهزة</span></a>
+                    <a class="store-item" href="#" data-name="السوشيال ميديا"><div class="store-thumb"><div class="store-logo social">📣</div></div><span class="store-label">السوشيال ميديا</span></a>
+                    <a class="store-item" href="#" data-name="حسابات جاهزة"><div class="store-thumb"><div class="store-logo account">👤</div></div><span class="store-label">حسابات جاهزة</span></a>
                     <a class="store-item" href="#" data-name="برامج"><div class="store-thumb"><div class="store-logo soft">🧩</div></div><span class="store-label">برامج</span></a>
-                    <a class="store-item" href="#" data-name="تفعيل الحسابات"><div class="store-thumb"><div class="store-logo premium">✅</div></div><span class="store-label">تفعيل<br />الحسابات</span></a>
-                    <a class="store-item" href="#" data-name="اشتراكات الشاشة"><div class="store-thumb"><div class="store-logo tv">📺</div></div><span class="store-label">اشتراكات<br />الشاشة</span></a>
-                    <a class="store-item" href="#" data-name="تطبيقات تصميم"><div class="store-thumb"><div class="store-logo design">🖌️</div></div><span class="store-label">تطبيقات<br />تصميم</span></a>
+                    <a class="store-item" href="#" data-name="تفعيل الحسابات"><div class="store-thumb"><div class="store-logo premium">✅</div></div><span class="store-label">تفعيل الحسابات</span></a>
+                    <a class="store-item" href="#" data-name="اشتراكات الشاشة"><div class="store-thumb"><div class="store-logo tv">📺</div></div><span class="store-label">اشتراكات الشاشة</span></a>
+                    <a class="store-item" href="#" data-name="تطبيقات تصميم"><div class="store-thumb"><div class="store-logo design">🖌️</div></div><span class="store-label">تطبيقات تصميم</span></a>
                     <a class="store-item" href="#" data-name="أرقام"><div class="store-thumb"><div class="store-logo numbers">☎️</div></div><span class="store-label">أرقام</span></a>
                     <a class="store-item" href="#" data-name="VPN"><div class="store-thumb"><div class="store-logo vpn">🔒</div></div><span class="store-label">VPN</span></a>
                 </div>
-                <div class="quick-actions"><button type="button">🔥 الأكثر طلباً</button><button type="button">⚡ عروض اليوم</button><button type="button">🛡️ خدمات موثوقة</button></div>
+
+                <div class="section-heading" id="games"><h2>العاب</h2><a href="#games">عرض الكل</a></div>
+                <div class="game-list">
+                    <article class="game-card" data-name="pubg mobile شحن بطاقات روبية">
+                        <div class="game-header">
+                            <div class="game-icon" aria-hidden="true">🎮</div>
+                            <div>
+                                <h3>PUBG Mobile</h3>
+                                <small>تفعيل فوري</small>
+                            </div>
+                        </div>
+                        <ul class="game-options">
+                            <li><span>بطاقة 60</span><strong>$ 8</strong></li>
+                            <li><span>بطاقة 150</span><strong>$ 15</strong></li>
+                            <li><span>بطاقة 355</span><strong>$ 29</strong></li>
+                        </ul>
+                        <button type="button">طلب الآن</button>
+                    </article>
+
+                    <article class="game-card" data-name="free fire شحن الرصيد">
+                        <div class="game-header">
+                            <div class="game-icon" aria-hidden="true">🔥</div>
+                            <div>
+                                <h3>Free Fire</h3>
+                                <small>باقة موثوقة</small>
+                            </div>
+                        </div>
+                        <ul class="game-options">
+                            <li><span>50 Diamonds</span><strong>$ 4</strong></li>
+                            <li><span>100 Diamonds</span><strong>$ 8</strong></li>
+                            <li><span>310 Diamonds</span><strong>$ 19</strong></li>
+                        </ul>
+                        <button type="button">طلب الآن</button>
+                    </article>
+
+                    <article class="game-card" data-name="call of duty mobile شحن بينات">
+                        <div class="game-header">
+                            <div class="game-icon" aria-hidden="true">⚡</div>
+                            <div>
+                                <h3>COD Mobile</h3>
+                                <small>مميز لليوم</small>
+                            </div>
+                        </div>
+                        <ul class="game-options">
+                            <li><span>الباقة الصغيرة</span><strong>$ 6</strong></li>
+                            <li><span>الباقة المتوسطة</span><strong>$ 11</strong></li>
+                            <li><span>الباقة الكبيرة</span><strong>$ 22</strong></li>
+                        </ul>
+                        <button type="button">طلب الآن</button>
+                    </article>
+
+                    <article class="game-card" data-name="valorant رويال باقات">
+                        <div class="game-header">
+                            <div class="game-icon" aria-hidden="true">🎯</div>
+                            <div>
+                                <h3>Valorant</h3>
+                                <small>بطاقات متاحة</small>
+                            </div>
+                        </div>
+                        <ul class="game-options">
+                            <li><span>420 VP</span><strong>$ 5</strong></li>
+                            <li><span>1375 VP</span><strong>$ 15</strong></li>
+                            <li><span>4200 VP</span><strong>$ 42</strong></li>
+                        </ul>
+                        <button type="button">طلب الآن</button>
+                    </article>
+
+                    <article class="game-card" data-name="steam هدايا بطاقات ألعاب">
+                        <div class="game-header">
+                            <div class="game-icon" aria-hidden="true">🛒</div>
+                            <div>
+                                <h3>Steam Wallet</h3>
+                                <small>هدية فورية</small>
+                            </div>
+                        </div>
+                        <ul class="game-options">
+                            <li><span>$10</span><strong>$ 10</strong></li>
+                            <li><span>$25</span><strong>$ 25</strong></li>
+                            <li><span>$50</span><strong>$ 50</strong></li>
+                        </ul>
+                        <button type="button">طلب الآن</button>
+                    </article>
+
+                    <article class="game-card" data-name="playstation xbox شحن بطاقات">
+                        <div class="game-header">
+                            <div class="game-icon" aria-hidden="true">🕹️</div>
+                            <div>
+                                <h3>PlayStation / Xbox</h3>
+                                <small>بطاقات ألعاب</small>
+                            </div>
+                        </div>
+                        <ul class="game-options">
+                            <li><span>PSN 10$</span><strong>$ 10</strong></li>
+                            <li><span>PSN 20$</span><strong>$ 20</strong></li>
+                            <li><span>XBOX 25$</span><strong>$ 25</strong></li>
+                        </ul>
+                        <button type="button">طلب الآن</button>
+                    </article>
+                </div>
+
+                <div class="quick-actions"><button type="button">🔥 الأكثر طلباً</button><button type="button">⚡ عروض اليوم</button><button type="button">🛡️ خدمات مضمونة</button><button type="button">🎁 هدايا خاصة</button></div>
             </section>
         </main>
 
-        <nav class="bottom-nav" aria-label="التنقل السفلي"><button class="nav-icon active" type="button">⌂<span>الرئيسية</span></button><button class="nav-icon" type="button">◫<span>الطلبات</span></button><button class="nav-icon" type="button">◍<span>الحساب</span></button><button class="nav-icon" type="button">🛒<span>السلة</span></button></nav>
+        <nav class="bottom-nav" aria-label="التنقل السفلي"><button class="nav-icon active" type="button">⌂<span>الرئيسية</span></button><button class="nav-icon" type="button">◫<span>الفئات</span></button><button class="nav-icon" type="button">🛍️<span>طلبات</span></button><button class="nav-icon" type="button">⚙️<span>إعدادات</span></button></nav>
     </div>
     <script>
         const search = document.querySelector('#search');
-        const items = [...document.querySelectorAll('.store-item')];
+        const items = [...document.querySelectorAll('.store-item, .game-card')];
         search.addEventListener('input', () => {
             const query = search.value.trim().toLowerCase();
-            items.forEach(item => { item.hidden = query && !item.dataset.name.toLowerCase().includes(query); });
+            items.forEach(item => {
+                const itemName = (item.dataset.name || '').toLowerCase();
+                item.hidden = query && !itemName.includes(query);
+            });
         });
-        document.querySelectorAll('.store-item').forEach(item => item.addEventListener('click', event => event.preventDefault()));
+        document.querySelectorAll('.store-item, .game-card button').forEach(item => item.addEventListener('click', event => event.preventDefault()));
     </script>
 </body>
 </html>
